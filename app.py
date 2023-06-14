@@ -14,7 +14,9 @@ import time
 from configs.model_config import *
 import nltk
 from models.chatglm_llm import ChatGLM
-from langchain.document_loaders import UnstructuredFileLoader
+# from langchain.document_loaders import UnstructuredFileLoader
+from langchain.document_loaders import TextLoader
+
 from textsplitter import ChineseTextSplitter
 from tqdm import tqdm
 from utils import torch_gc
@@ -59,7 +61,8 @@ refine_template = (
 
 def get_text_summary(txt_path):
     print("starting summarizing")
-    loader = UnstructuredFileLoader(txt_path, mode="elements")
+    # loader = UnstructuredFileLoader(txt_path, mode="elements")
+    loader = TextLoader(txt_path, encoding="utf-8")
     textsplitter = ChineseTextSplitter(pdf=False, sentence_size=SENTENCE_SIZE)
     docs = loader.load_and_split(text_splitter=textsplitter)
 
