@@ -404,7 +404,7 @@ webui_title = """
 
 项目旨在将直播视频和视频文件转写成文本,在文本摘要以及关键词抽取两大功能的加持下,辅助用户实现视频内容智能感知
 
-项目地址为: [https://github.com/freeline55/ChatGLM-Video-Sense+](https://github.com/freeline55/ChatGLM-Video-Sense+) 
+项目地址为: [https://github.com/freeline55/ChatGLM-Video-Sense](https://github.com/freeline55/ChatGLM-Video-Sense) 
 """
 
 
