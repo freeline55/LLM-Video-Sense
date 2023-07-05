@@ -77,10 +77,7 @@ def get_text_summary(txt_path):
 
 # 加载ChatGLM模型
 def load_chatglm():
-    # model_name = "THUDM/chatglm-6b-int8"
-    # "renbing"
-    model_name = "/root/autodl-tmp/model/chatglm-6b/"
-    #model_name = "none"
+    model_name = "THUDM/chatglm-6b-int8"
     print("正在加载模型:" + model_name)
     llm = ChatGLM()
     llm.load_model(model_name_or_path=model_name, llm_device="cuda:0", use_ptuning_v2=False, use_lora=False)
@@ -99,9 +96,7 @@ for i in range(5):
         time.sleep(5)
 
 
-# renbing
-#whisper_model = "medium"
-whisper_model = "/root/autodl-tmp/model/whisper_medium"
+whisper_model = "medium"
 for i in range(5):
     try:
         print("正在加载模型:" + whisper_model)
