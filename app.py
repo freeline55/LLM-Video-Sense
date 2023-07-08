@@ -144,6 +144,35 @@ def extract_keyword(text):
     print("关键词词频统计结果:", words)
     return get_wordcloud_pic(words, color='white', top_k=51, bg_name='bg', font_type='wryh')
 
+def extract_keyword_from_file(file_name):
+    print("starting extracting keyword")
+    f = open(file_name, 'r', encoding='utf-8')
+    text = f.read().strip()
+    keyword_extracation_prompt = f"你扮演的角色是关键词抽取工具,请从输入的文本中抽取出10个最重要的关键词,多个关键词之间用单个逗号分割: \n\n" + text
+    f.close()
+    print("抽取内容为:", keyword_extracation_prompt)
+    keyword_extracation_res = next(llm._call(prompt=keyword_extracation_prompt, history=[], streaming=False))[0]
+    keyword_extracation_res = keyword_extracation_res.strip().replace("，", ",").replace("：", ":").strip("关键词").strip(":").strip("。")
+    print("抽取的关键词为:", keyword_extracation_res)
+    words = {}
+    torch_gc()
+
+    if "." in keyword_extracation_res:
+        for r in keyword_extracation_res.split("\n"):
+            if len(r) > 0:
+                words[r[r.index(".") + 1:].strip()] = text.count(r[r.index(".") + 1:].strip())
+    elif "," in keyword_extracation_res:
+        for r in keyword_extracation_res.split(","):
+            if len(r) > 0:
+                words[r.strip()] = text.count(r.strip())
+    elif "、" in keyword_extracation_res:
+        for r in keyword_extracation_res.split("、"):
+            if len(r) > 0:
+                words[r.strip()] = text.count(r.strip())
+
+    print("关键词词频统计结果:", words)
+    return get_wordcloud_pic(words, color='white', top_k=51, bg_name='bg', font_type='wryh')
+
 
 def speech_to_text(video_file_path):  # selected_source_lang, whisper_model):
     # for i in range(5):
@@ -381,7 +410,7 @@ def stream_video_translate(url, max_len=10, language=None, interval=5, history_b
             # 不要频繁的摘要生成关键词,太浪费时间,这里只是为了尽快展示效果
             if line_count % (max_len * 1) == 0:
                 stream_summary = get_text_summary(stream_video_file)
-                stream_keyword = extract_keyword(stream_video_file)
+                stream_keyword = extract_keyword_from_file(stream_video_file)
 
             tmp = f'{datetime.now().strftime("%H:%M:%S")} {decoded_language} {decoded_text}'
             length = len(res_list)
@@ -398,13 +427,77 @@ def stream_video_translate(url, max_len=10, language=None, interval=5, history_b
         if streamlink_process:
             streamlink_process.kill()
 
+def reformat_freq(sr, y):
+    """
+    sample_rate不支持48000，转换为16000
+    """
+    if sr not in (
+        48000,
+        16000,
+    ):  # Deepspeech only supports 16k, (we convert 48k -> 16k)
+        raise ValueError("Unsupported rate", sr)
+    if sr == 48000:
+        y = (
+            y
+            .reshape((-1, 3))
+            .mean(axis=1)
+            .astype("int16")
+        )
+        sr = 16000
+    return sr, y
+
+res_list = []
+microphone_file = f"output/microphone_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.txt"
+
+def microphone_translate(audio, stream_summary=None, stream_keyword=None, line_count=0, max_len=10, language=None, interval_sec=5, **decode_options):
+    """实时转录麦克风输入语音"""
+    # 引用全局变量，也可以引用state存储状态信息比如stream_summary，因为流式输入函数内都是临时变量，不能做状态延续
+    global model, res_list, microphone_file
+    sample_rate, audio_stream = reformat_freq(*audio)
+    # 数据转换，模型只支持16000采样率
+    audio_stream = audio_stream.flatten().astype(np.float32) / 32768.0
+    segments, info = model.transcribe(audio_stream, language=language, **decode_options)
+    # 本次处理的转录文字
+    decoded_text = ""
+    previous_segment = ""
+    for segment in segments:
+        if segment.text != previous_segment:
+            decoded_text += segment.text
+            previous_segment = segment.text
+
+    decoded_language = "" if language else "(" + info.language + ")"
+    tmp = f'{datetime.now().strftime("%H:%M:%S")} {decoded_language} {decoded_text}'
+    length = len(res_list)
+    if length >= max_len:
+        res_list = res_list[length - max_len + 1:length]
+    # 多次处理的转录文字
+    res_list.append(tmp)
+    stream = "\n".join(res_list)
+
+    # 把转写的结果写入文件
+    with open(microphone_file, "a+", encoding="utf-8") as f:
+        context = f.read().strip() + " "
+        #context += stream
+        context += decoded_text
+        f.write(context)
+        line_count += 1
+
+    # 不要频繁的摘要生成关键词,太浪费时间,这里只是为了尽快展示效果
+    if line_count % (max_len * 1) == 0:
+        stream_summary = get_text_summary(microphone_file)
+        stream_keyword = extract_keyword_from_file(microphone_file)
+
+    # 使用sleep控制单次处理的时长来提升识别效果，完全实时的情况，模型不能联系上下文效果很差
+    time.sleep(interval_sec)
+    # 返回状态
+    return stream, stream_summary, stream_keyword, line_count
 
 webui_title = """
 # 🎉 ChatGLM-Video-Sense+ 🎉
 
 项目旨在将直播视频和视频文件转写成文本,在文本摘要以及关键词抽取两大功能的加持下,辅助用户实现视频内容智能感知
 
-项目地址为: [https://github.com/freeline55/ChatGLM-Video-Sense](https://github.com/freeline55/ChatGLM-Video-Sense) 
+项目地址为: [https://github.com/freeline55/ChatGLM-Video-Sense](https://github.com/freeline55/ChatGLM-Video-Sense)
 """
 
 
@@ -412,10 +505,6 @@ with gr.Blocks() as demo:
     gr.Markdown(webui_title)
 
     with gr.Tab("直播视频实时转写"):
-        # 可能有遗留gr进程，关闭所有gr进程
-        gr.close_all()
-        time.sleep(3)
-
         with gr.Row():
             with gr.Column():
                 # 交互界面吊起
@@ -447,10 +536,21 @@ with gr.Blocks() as demo:
             outputs=[text_translate, text_summary, text_image],
             queue=False
         )
+    with gr.Tab("麦克风实时转写"):
+        with gr.Row():
+            with gr.Column():
+                # 交互界面吊起
+                mic_stream = gr.Audio(label="点击麦克风", source="microphone", type="numpy", streaming=True)
+                line_count = gr.Number(label="累计行数", value=0)
+                res_output = gr.Textbox(label="转写结果", lines=10, max_lines=15)
 
+        with gr.Row():
+            stream_text_summary = gr.Textbox(label="摘要结果", lines=10, max_lines=20)
+            stream_text_image = gr.Image(label="关键词词云图")
+        # 实时更新stream_text_summary, stream_text_image
+        mic_stream.stream(microphone_translate, inputs=[mic_stream, stream_text_summary, stream_text_image, line_count], outputs=[res_output, stream_text_summary, stream_text_image, line_count])
+
+# 可能有遗留gr进程，关闭所有gr进程
+gr.close_all()
+time.sleep(3)
 demo.queue().launch(server_name='0.0.0.0', share=False, inbrowser=False)
-
-
-
-
-
