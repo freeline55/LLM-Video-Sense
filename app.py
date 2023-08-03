@@ -1,42 +1,63 @@
 import sys
 import importlib
 importlib.reload(sys)
-import threading
-
 from faster_whisper import WhisperModel
 import datetime
 import gradio as gr
 import os
 import torch
-import wave
-import contextlib
 import time
-from configs.model_config import *
 import nltk
-from models.chatglm_llm import ChatGLM
-# from langchain.document_loaders import UnstructuredFileLoader
 from langchain.document_loaders import TextLoader
-
-from textsplitter import ChineseTextSplitter
+from langchain.text_splitter import CharacterTextSplitter
 from tqdm import tqdm
 from utils import torch_gc
 import imageio
 from wordcloud import WordCloud
-import sys
 from datetime import datetime
 import ffmpeg
+import uuid
 import numpy as np
+from collections import defaultdict
+from modelscope import Model, pipeline, read_config, snapshot_download
+from modelscope.metainfo import Models
+from modelscope.utils.config import ConfigDict
+from modelscope.models.nlp import ChatGLM2Tokenizer
 
+SENTENCE_SIZE = 512
+SAMPLE_RATE = 16000
+os.makedirs("output", exist_ok=True)
+# 设置环境变量
+NLTK_DATA_PATH = os.path.join(os.path.dirname(__file__), "nltk_data")
 nltk.data.path = [NLTK_DATA_PATH] + nltk.data.path
+os.environ["PATH"] = os.environ["PATH"]+':'+os.path.join(os.path.dirname(__file__), "ffmpeg_release")
 
-whisper_models = ["tiny", "base", "small", "medium", "medium.en", "large-v1", "large-v2"]
 
-source_languages = {
-    "英文": "en",
-    "中文": "zh"
-}
+for i in range(10):
+    try:
+        model = WhisperModel("medium", device="cuda" if torch.cuda.is_available() else "cpu", compute_type="int8_float16")
+        print("medium FasterWhisper模型加载完毕")
+        break
+    except Exception as e:
+        print(f"重新加载medium FasterWhisper模型【网络问题】，次数：{i}")
 
-source_language_list = [key[0] for key in source_languages.items()]
+
+model_dir = 'ZhipuAI/chatglm2-6b'
+model_dir = snapshot_download(model_dir, revision='v1.0.6')
+model_config = read_config(model_dir, revision='v1.0.6')
+model_config['model'] = ConfigDict({'type': Models.chatglm2_6b})
+tokenizer = ChatGLM2Tokenizer.from_pretrained(model_dir)
+chatmodel = Model.from_pretrained(model_dir, cfg_dict=model_config)
+chatmodel = chatmodel.bfloat16()
+pipe = pipeline('chat', chatmodel, pipeline_name='chatglm6b-text-generation')
+print("ZhipuAI/chatglm2-6b模型加载完毕")
+
+
+# 根据输入的问题，给出结果
+def get_qa(text):
+    torch_gc()
+    return chatmodel.chat(tokenizer=tokenizer, query=text, history= [], temperature=0.001)["response"]
+
 
 # 抽取摘要的提示
 prompt_template = """为下面的内容生成一份精简的摘要:
@@ -59,53 +80,29 @@ refine_template = (
     "如果这段新的上下文信息不能提供额外的信息,请返回原始的摘要"
 )
 
-def get_text_summary(txt_path):
-    print("starting summarizing")
-    # loader = UnstructuredFileLoader(txt_path, mode="elements")
-    loader = TextLoader(txt_path, encoding="utf-8")
-    textsplitter = ChineseTextSplitter(pdf=False, sentence_size=SENTENCE_SIZE)
-    docs = loader.load_and_split(text_splitter=textsplitter)
 
+# 获取分割后的文本
+def get_split_docs(output_txt_path):
+    # 加载并分割转写文本
+    loader = TextLoader(output_txt_path, encoding="utf-8")
+    pages = loader.load_and_split()
+    text_splitter = CharacterTextSplitter(separator="\n", chunk_size=SENTENCE_SIZE, chunk_overlap=0)
+    docs = text_splitter.split_documents(pages)
+    return docs
+
+
+# 生成文本摘要
+def get_text_summary(output_txt_path):
+    print("开始文本摘要")
+
+    docs = get_split_docs(output_txt_path)
     for i, line in enumerate(tqdm(docs)):
-        torch_gc()
         if i == 0:
-            summary = next(llm._call(prompt=prompt_template.replace("{text}", line.page_content), history=[], streaming=False))[0]
+            summary = get_qa(prompt_template.replace("{text}", line.page_content))
         else:
-            summary = next(llm._call(prompt=refine_template.replace("{existing_answer}", summary).replace("{text}", line.page_content), history=[], streaming=False))[0]
+            summary = get_qa(refine_template.replace("{existing_answer}", summary).replace("{text}", line.page_content))
 
     return summary
-
-# 加载ChatGLM模型
-def load_chatglm():
-    model_name = "THUDM/chatglm-6b-int8"
-    print("正在加载模型:" + model_name)
-    llm = ChatGLM()
-    llm.load_model(model_name_or_path=model_name, llm_device="cuda:0", use_ptuning_v2=False, use_lora=False)
-    llm.temperature = 1e-3
-    print(model_name + "模型加载完毕")
-    return llm
-
-
-for i in range(5):
-    try:
-        llm = load_chatglm()
-        selected_source_lang = "中文"
-        break
-    except:
-        print("加载失败,正在尝试第 " + str(i + 1) + "次")
-        time.sleep(5)
-
-
-whisper_model = "medium"
-for i in range(5):
-    try:
-        print("正在加载模型:" + whisper_model)
-        model = WhisperModel(whisper_model, device="cuda" if torch.cuda.is_available() else "cpu", compute_type="int8_float16")
-        print(whisper_model + "模型加载完毕")
-        break
-    except Exception as e:
-        print(whisper_model + "模型加载失败,正在尝试第 " + str(i + 1) + "次", e)
-        time.sleep(5)
 
 
 # 生成关键词词云图
@@ -117,120 +114,93 @@ def get_wordcloud_pic(words_freq, **kwargs):
     word_cloud.to_file('./output/result.png')
     return imageio.imread('./output/result.png')
 
+
 # 抽取关键词
-def extract_keyword(text):
-    print("starting extracting keyword")
-    keyword_extracation_prompt = f"你扮演的角色是关键词抽取工具,请从输入的文本中抽取出10个最重要的关键词,多个关键词之间用单个逗号分割: \n\n" + text
-    print("抽取内容为:", keyword_extracation_prompt)
-    keyword_extracation_res = next(llm._call(prompt=keyword_extracation_prompt, history=[], streaming=False))[0]
-    keyword_extracation_res = keyword_extracation_res.strip().replace("，", ",").replace("：", ":").strip("关键词").strip(":").strip("。")
-    print("抽取的关键词为:", keyword_extracation_res)
-    words = {}
-    torch_gc()
+def extract_keyword(output_txt_path):
+    print("开始抽取关键词")
 
-    if "." in keyword_extracation_res:
-        for r in keyword_extracation_res.split("\n"):
-            if len(r) > 0:
-                words[r[r.index(".") + 1:].strip()] = text.count(r[r.index(".") + 1:].strip())
-    elif "," in keyword_extracation_res:
-        for r in keyword_extracation_res.split(","):
-            if len(r) > 0:
-                words[r.strip()] = text.count(r.strip())
-    elif "、" in keyword_extracation_res:
-        for r in keyword_extracation_res.split("、"):
-            if len(r) > 0:
-                words[r.strip()] = text.count(r.strip())
+    docs = get_split_docs(output_txt_path)
+    with open(output_txt_path, "r", encoding="utf-8") as f:
+        text = f.read()
+
+    words = {}
+    for i, line in enumerate(tqdm(docs)):
+        keyword_extracation_prompt = f"请从输入的文本中抽取出十个最重要的关键词,结果使用逗号分隔: \n{line.page_content}"
+        keyword_extracation_res = get_qa(keyword_extracation_prompt).replace("，", ",").replace("：", ":").replace(":", "").strip("关键词").strip("。").strip()
+        print("关键词抽取结果：", keyword_extracation_res)
+        if "." in keyword_extracation_res:
+            for r in keyword_extracation_res.split("\n"):
+                if len(r) > 0:
+                    count = text.count(r[r.index(".") + 1:].strip())
+                    if count > 0:
+                        words[r[r.index(".") + 1:].strip()] = count
+        elif "," in keyword_extracation_res:
+            for r in keyword_extracation_res.split(","):
+                if len(r) > 0:
+                    count = text.count(r.strip())
+                    if count > 0:
+                        words[r.strip()] = count
+        elif "、" in keyword_extracation_res:
+            for r in keyword_extracation_res.split("、"):
+                if len(r) > 0:
+                    count = text.count(r.strip())
+                    if count > 0:
+                        words[r.strip()] = count
 
     print("关键词词频统计结果:", words)
-    return get_wordcloud_pic(words, color='white', top_k=51, bg_name='bg', font_type='wryh')
+    if len(words) > 0:
+        return get_wordcloud_pic(words, color='white', top_k=51, bg_name='bg', font_type='wryh')
 
-def extract_keyword_from_file(file_name):
-    print("starting extracting keyword")
-    f = open(file_name, 'r', encoding='utf-8')
-    text = f.read().strip()
-    keyword_extracation_prompt = f"你扮演的角色是关键词抽取工具,请从输入的文本中抽取出10个最重要的关键词,多个关键词之间用单个逗号分割: \n\n" + text
-    f.close()
-    print("抽取内容为:", keyword_extracation_prompt)
-    keyword_extracation_res = next(llm._call(prompt=keyword_extracation_prompt, history=[], streaming=False))[0]
-    keyword_extracation_res = keyword_extracation_res.strip().replace("，", ",").replace("：", ":").strip("关键词").strip(":").strip("。")
-    print("抽取的关键词为:", keyword_extracation_res)
-    words = {}
+
+# 生成关键词词云图
+def get_wordcloud_pic(words_freq, **kwargs):
+    bg_img = imageio.imread('./sources/{}.png'.format(kwargs['bg_name']))
+    font_path = './sources/{}.ttf'.format(kwargs['font_type'])
+    word_cloud = WordCloud(font_path=font_path, background_color=kwargs['color'], max_words=kwargs['top_k'], max_font_size=50, mask=bg_img)
+    word_cloud.generate_from_frequencies(words_freq)
+    word_cloud.to_file('./output/result.png')
+    return imageio.imread('./output/result.png')
+
+
+# 音频或者视频转写为文本
+def speech_to_text(video_file_path):
     torch_gc()
+    print("开始转写音频或者视频")
+    # 避免用户上传wav文件后，使用ffmpeg转换重名失败
+    video_file_path = video_file_path.replace(".wav", ".mp4")
+    filename, file_ending = os.path.splitext(f'{video_file_path}')
+    new_video_file_path = filename + "_" + time.strftime("%Y%m%d%H%M%S", time.localtime()) + file_ending
+    os.rename(video_file_path, new_video_file_path)
+    audio_file = new_video_file_path.replace(file_ending, ".wav")
+    os.system(f'ffmpeg_release/ffmpeg -i "{new_video_file_path}" -ar 16000 -ac 1 -c:a pcm_s16le "{audio_file}"')
 
-    if "." in keyword_extracation_res:
-        for r in keyword_extracation_res.split("\n"):
-            if len(r) > 0:
-                words[r[r.index(".") + 1:].strip()] = text.count(r[r.index(".") + 1:].strip())
-    elif "," in keyword_extracation_res:
-        for r in keyword_extracation_res.split(","):
-            if len(r) > 0:
-                words[r.strip()] = text.count(r.strip())
-    elif "、" in keyword_extracation_res:
-        for r in keyword_extracation_res.split("、"):
-            if len(r) > 0:
-                words[r.strip()] = text.count(r.strip())
+    options = dict(language="zh", beam_size=5, best_of=5)
+    transcribe_options = dict(task="transcribe", **options)
+    segments_raw, info = model.transcribe(audio_file, **transcribe_options)
 
-    print("关键词词频统计结果:", words)
-    return get_wordcloud_pic(words, color='white', top_k=51, bg_name='bg', font_type='wryh')
+    segments = []
+    for segment_chunk in segments_raw:
+        segments.append(segment_chunk.text)
 
-
-def speech_to_text(video_file_path):  # selected_source_lang, whisper_model):
-    # for i in range(5):
-    #     try:
-    #         print("正在加载模型:" + whisper_model)
-    #         model = WhisperModel(whisper_model, device="cuda" if torch.cuda.is_available() else "cpu", compute_type="int8_float16")
-    #         print(whisper_model + "模型加载完毕")
-    #         break
-    #     except Exception as e:
-    #         print(whisper_model + "模型加载失败,正在尝试第 " + str(i + 1) + "次", e)
-    #         time.sleep(5)
-
-    if(video_file_path == None):
-        raise ValueError("Error no video input")
-
-    print("原始路径:", video_file_path)
-
-    try:
-        filename, file_ending = os.path.splitext(f'{video_file_path}')
-        new_video_file_path = filename + "_" + time.strftime("%Y%m%d%H%M%S", time.localtime()) + file_ending
-        os.rename(video_file_path, new_video_file_path)
-        print("新的路径:", new_video_file_path)
-
-        print(f'file enging is {file_ending}')
-        audio_file = new_video_file_path.replace(file_ending, ".wav")
-        print("starting conversion to wav")
-        os.system(f'ffmpeg -i "{new_video_file_path}" -ar 16000 -ac 1 -c:a pcm_s16le "{audio_file}"')
-
-        # Get duration
-        with contextlib.closing(wave.open(audio_file,'r')) as f:
-            frames = f.getnframes()
-            rate = f.getframerate()
-            duration = frames / float(rate)
-        print(f"conversion to wav ready, duration of audio file: {duration}")
-
-        options = dict(language=source_languages[selected_source_lang], beam_size=5, best_of=5)
-        transcribe_options = dict(task="transcribe", **options)
-        segments_raw, info = model.transcribe(audio_file, **transcribe_options)
-
-        segments = []
-        for segment_chunk in segments_raw:
-            segments.append(segment_chunk.text)
-        transcribe_text = " ".join(segments)
-        print("transcribe audio done with fast whisper")
-
-        output_txt_path = os.path.join("output", os.path.basename(new_video_file_path).split(".")[0] + ".txt")
-        with open(output_txt_path, "w", encoding="utf-8") as wf:
-            wf.write(transcribe_text)
-            torch_gc()
-            print("transcribe text writen into txt file")
-
-        return transcribe_text, get_text_summary(output_txt_path), extract_keyword(transcribe_text)
-    except Exception as e:
-        raise RuntimeError(e)
+    # 返回文件的前缀和转写后的文本
+    return os.path.basename(new_video_file_path).split(".")[0], " ".join(segments)
 
 
+# 离线视频分析
+def offline_video_analyse(video_file_path):
+    torch_gc()
+    print("开始分析离线视频")
+    # 视频转文本
+    file_prefix, transcribe_text = speech_to_text(video_file_path)
 
-SAMPLE_RATE = 16000
+    # 转写文本保存
+    output_txt_path = os.path.join("output",  file_prefix + ".txt")
+    with open(output_txt_path, "w", encoding="utf-8") as wf:
+        wf.write(transcribe_text)
+
+    # 获取转写文本，文本摘要和关键词
+    return transcribe_text, get_text_summary(output_txt_path), extract_keyword(output_txt_path)
+
 
 class RingBuffer:
     def __init__(self, size):
@@ -327,9 +297,18 @@ def open_stream(stream, direct_url, preferred_quality):
     return ffmpeg_process, streamlink_process
 
 
-def stream_video_translate(url, max_len=10, language=None, interval=5, history_buffer_size=0, preferred_quality="audio_only",
-         use_vad=True, direct_url=False, faster_whisper_args=True, **decode_options):
+stream_status = True
 
+
+def update_stream_status():
+    global stream_status
+    stream_status = False
+
+
+def stream_video_translate(url, max_len=10, language=None, interval=5, history_buffer_size=0, preferred_quality="audio_only", use_vad=True, direct_url=False, faster_whisper_args=True, **decode_options):
+    global stream_status
+
+    stream_status = True
     line_count = 0
     stream_video_file = f"output/stream_video_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.txt"
     res_list = []
@@ -337,8 +316,6 @@ def stream_video_translate(url, max_len=10, language=None, interval=5, history_b
     n_bytes = interval * SAMPLE_RATE * 2  # Factor 2 comes from reading the int16 stream as bytes
     audio_buffer = RingBuffer((history_buffer_size // interval) + 1)
     previous_text = RingBuffer(history_buffer_size // interval)
-    # 声明加载好的模型
-    global model
 
     if use_vad:
         from utils.vad import VAD
@@ -349,12 +326,13 @@ def stream_video_translate(url, max_len=10, language=None, interval=5, history_b
 
     try:
         stream_summary, stream_keyword = None, None
-        while ffmpeg_process.poll() is None:
+        while ffmpeg_process.poll() is None and stream_status:
             # Read audio from ffmpeg stream
             in_bytes = ffmpeg_process.stdout.read(n_bytes)
             if not in_bytes:
                 break
 
+            torch_gc()
             audio = np.frombuffer(in_bytes, np.int16).flatten().astype(np.float32) / 32768.0
             if use_vad and vad.no_speech(audio):
                 print(f'{datetime.now().strftime("%H:%M:%S")}')
@@ -363,37 +341,17 @@ def stream_video_translate(url, max_len=10, language=None, interval=5, history_b
 
             # Decode the audio
             clear_buffers = False
-            if faster_whisper_args:
-                segments, info = model.transcribe(audio, language=language, **decode_options)
+            segments, info = model.transcribe(audio, language=language, **decode_options)
 
-                decoded_language = "" if language else "(" + info.language + ")"
-                decoded_text = ""
-                previous_segment = ""
-                for segment in segments:
-                    if segment.text != previous_segment:
-                        decoded_text += segment.text
-                        previous_segment = segment.text
+            decoded_language = "" if language else "(" + info.language + ")"
+            decoded_text = ""
+            previous_segment = ""
+            for segment in segments:
+                if segment.text != previous_segment:
+                    decoded_text += segment.text
+                    previous_segment = segment.text
 
-                new_prefix = decoded_text
-
-            else:
-                result = model.transcribe(np.concatenate(audio_buffer.get_all()),
-                                          prefix="".join(previous_text.get_all()),
-                                          language=language,
-                                          without_timestamps=True,
-                                          **decode_options)
-
-                decoded_language = "" if language else "(" + result.get("language") + ")"
-                decoded_text = result.get("text")
-                new_prefix = ""
-                for segment in result["segments"]:
-                    if segment["temperature"] < 0.5 and segment["no_speech_prob"] < 0.6:
-                        new_prefix += segment["text"]
-                    else:
-                        # Clear history if the translation is unreliable, otherwise prompting on this leads to
-                        # repetition and getting stuck.
-                        clear_buffers = True
-
+            new_prefix = decoded_text
             previous_text.append(new_prefix)
 
             if clear_buffers or previous_text.has_repetition():
@@ -410,9 +368,11 @@ def stream_video_translate(url, max_len=10, language=None, interval=5, history_b
             # 不要频繁的摘要生成关键词,太浪费时间,这里只是为了尽快展示效果
             if line_count % (max_len * 1) == 0:
                 stream_summary = get_text_summary(stream_video_file)
-                stream_keyword = extract_keyword_from_file(stream_video_file)
+                stream_keyword = extract_keyword(stream_video_file)
 
             tmp = f'{datetime.now().strftime("%H:%M:%S")} {decoded_language} {decoded_text}'
+            print(tmp)
+
             length = len(res_list)
             if length >= max_len:
                 res_list = res_list[length - max_len + 1:length]
@@ -426,6 +386,7 @@ def stream_video_translate(url, max_len=10, language=None, interval=5, history_b
         ffmpeg_process.kill()
         if streamlink_process:
             streamlink_process.kill()
+
 
 def reformat_freq(sr, y):
     """
@@ -446,13 +407,26 @@ def reformat_freq(sr, y):
         sr = 16000
     return sr, y
 
-res_list = []
-microphone_file = f"output/microphone_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.txt"
 
-def microphone_translate(audio, stream_summary=None, stream_keyword=None, line_count=0, max_len=10, language=None, interval_sec=5, **decode_options):
+mic_dicts = defaultdict(dict)
+
+
+def get_summary_keyword(key):
+    if key not in mic_dicts:
+        return None, None
+
+    return get_text_summary(mic_dicts[key]["filename"]), extract_keyword(mic_dicts[key]["filename"])
+
+
+def microphone_translate(audio, key, language=None, interval_sec=5, **decode_options):
+    if key is None or len(key) <= 0:
+        key = ''.join(str(uuid.uuid4()).split('-'))
+        filename = f"output/microphone_{time.strftime('%Y%m%d%H%M%S', time.localtime())}.txt"
+        mic_dicts[key] = {"line_count": 0,  "res_list": [], "filename": filename}
+
+    torch_gc()
     """实时转录麦克风输入语音"""
     # 引用全局变量，也可以引用state存储状态信息比如stream_summary，因为流式输入函数内都是临时变量，不能做状态延续
-    global model, res_list, microphone_file
     sample_rate, audio_stream = reformat_freq(*audio)
     # 数据转换，模型只支持16000采样率
     audio_stream = audio_stream.flatten().astype(np.float32) / 32768.0
@@ -467,49 +441,43 @@ def microphone_translate(audio, stream_summary=None, stream_keyword=None, line_c
 
     decoded_language = "" if language else "(" + info.language + ")"
     tmp = f'{datetime.now().strftime("%H:%M:%S")} {decoded_language} {decoded_text}'
-    length = len(res_list)
-    if length >= max_len:
-        res_list = res_list[length - max_len + 1:length]
+
     # 多次处理的转录文字
-    res_list.append(tmp)
-    stream = "\n".join(res_list)
+    mic_dicts[key]["res_list"].append(tmp)
 
     # 把转写的结果写入文件
-    with open(microphone_file, "a+", encoding="utf-8") as f:
+    with open(mic_dicts[key]["filename"], "a+", encoding="utf-8") as f:
         context = f.read().strip() + " "
-        #context += stream
         context += decoded_text
         f.write(context)
-        line_count += 1
-
-    # 不要频繁的摘要生成关键词,太浪费时间,这里只是为了尽快展示效果
-    if line_count % (max_len * 1) == 0:
-        stream_summary = get_text_summary(microphone_file)
-        stream_keyword = extract_keyword_from_file(microphone_file)
+        mic_dicts[key]["line_count"] += 1
 
     # 使用sleep控制单次处理的时长来提升识别效果，完全实时的情况，模型不能联系上下文效果很差
     time.sleep(interval_sec)
+
     # 返回状态
-    return stream, stream_summary, stream_keyword, line_count
+    return "\n".join(mic_dicts[key]["res_list"]), key
+
 
 webui_title = """
-# 🎉 ChatGLM-Video-Sense+ 🎉
+# 🎉 视频内容智能感知 🎉
 
-项目旨在将直播视频和视频文件转写成文本,在文本摘要以及关键词抽取两大功能的加持下,辅助用户实现视频内容智能感知
+项目旨在将直播视频、视频文件和实时音频转写成文本，在文本摘要以及关键词抽取两大功能的加持下，辅助用户快速获取音频和视频的核心内容，提高学习和工作效率
 
-项目地址为: [https://github.com/freeline55/ChatGLM-Video-Sense](https://github.com/freeline55/ChatGLM-Video-Sense)
 """
 
 
 with gr.Blocks() as demo:
     gr.Markdown(webui_title)
 
-    with gr.Tab("直播视频实时转写"):
+    with gr.Tab("直播视频在线分析"):
         with gr.Row():
             with gr.Column():
                 # 交互界面吊起
                 url_input = gr.Textbox(label="输入url地址")
-                btn_stream = gr.Button("直播转写")
+                with gr.Row():
+                    btn_stream = gr.Button("直播转写")
+                    btn_stop = gr.Button("停止转写")
                 res_output = gr.Textbox(label="转写结果", lines=10, max_lines=15)
 
         with gr.Row():
@@ -517,12 +485,11 @@ with gr.Blocks() as demo:
             stream_text_image = gr.Image(label="关键词词云图")
 
         btn_stream.click(stream_video_translate, inputs=url_input, outputs=[res_output, stream_text_summary, stream_text_image], queue=True)
-    with gr.Tab("视频文件智能分析"):
+        btn_stop.click(update_stream_status)
+    with gr.Tab("视频文件在线分析"):
         with gr.Row():
             with gr.Column():
-                video_in = gr.Video(label="音/视频文件", mirror_webcam=False, )
-                # selected_source_lang = gr.Dropdown(choices=source_language_list, type="value", value="中文", label="视频语种", interactive=True)
-                # selected_whisper_model = gr.Dropdown(choices=whisper_models, type="value", value="medium", label="选择模型", interactive=True)
+                video_in = gr.Video(label="音/视频文件", mirror_webcam=False)
                 btn_analyse = gr.Button("视频分析")
         with gr.Row():
             text_translate = gr.Textbox(label="转写结果", lines=20, max_lines=50)
@@ -530,27 +497,33 @@ with gr.Blocks() as demo:
             text_image = gr.Image(label="关键词词云图")
 
         btn_analyse.click(
-            speech_to_text,
+            offline_video_analyse,
             inputs=[video_in],
-            # inputs=[video_in, selected_source_lang, selected_whisper_model],
             outputs=[text_translate, text_summary, text_image],
             queue=False
         )
-    with gr.Tab("麦克风实时转写"):
+    with gr.Tab("实时音频在线分析"):
         with gr.Row():
             with gr.Column():
                 # 交互界面吊起
                 mic_stream = gr.Audio(label="点击麦克风", source="microphone", type="numpy", streaming=True)
-                line_count = gr.Number(label="累计行数", value=0)
+                btn_summary_keyword = gr.Button("生成摘要和关键词")
+                key = gr.Textbox(label="key", lines=1, max_lines=1, interactive=False, visible=False)
                 res_output = gr.Textbox(label="转写结果", lines=10, max_lines=15)
 
         with gr.Row():
             stream_text_summary = gr.Textbox(label="摘要结果", lines=10, max_lines=20)
             stream_text_image = gr.Image(label="关键词词云图")
-        # 实时更新stream_text_summary, stream_text_image
-        mic_stream.stream(microphone_translate, inputs=[mic_stream, stream_text_summary, stream_text_image, line_count], outputs=[res_output, stream_text_summary, stream_text_image, line_count])
+
+        btn_summary_keyword.click(get_summary_keyword, inputs=key, outputs=[stream_text_summary, stream_text_image])
+        mic_stream.stream(microphone_translate, inputs=[mic_stream, key], outputs=[res_output, key])
 
 # 可能有遗留gr进程，关闭所有gr进程
 gr.close_all()
 time.sleep(3)
 demo.queue().launch(server_name='0.0.0.0', share=False, inbrowser=False)
+
+
+
+
+
