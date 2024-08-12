@@ -1,0 +1,5 @@
+/sources/*.mp4
+/sources/*.wav
+/models/faster-whisper/
+/models/.env
+/output/

@@ -36,8 +36,8 @@ tokenizer.add_tokens(
 
 print("Creat model...")
 model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16, trust_remote_code=True).cpu()
-
-inputs = tokenizer("请问目前最先进的机器学习算法有哪些？", return_tensors="pt")["input_ids"].cpu()
+print("end")
+inputs = tokenizer("你是谁？", return_tensors="pt")["input_ids"].cpu()
 outputs = model.generate(inputs, do_sample=False, max_length=100)
 output = tokenizer.decode(outputs[0])
 response = output.split("<sep>")[-1].replace("<eod>", '')

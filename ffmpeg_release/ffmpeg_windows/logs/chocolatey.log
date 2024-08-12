@@ -1,0 +1,714 @@
+2023-06-04 00:53:35,673 16472 [DEBUG] - XmlConfiguration is now operational
+2023-06-04 00:53:35,704 16472 [DEBUG] - Adding new type 'CygwinService' for type 'IAlternativeSourceRunner' from assembly 'choco'
+2023-06-04 00:53:35,705 16472 [DEBUG] - Adding new type 'CygwinService' for type 'IInstallSourceRunner' from assembly 'choco'
+2023-06-04 00:53:35,706 16472 [DEBUG] - Adding new type 'PythonService' for type 'IAlternativeSourceRunner' from assembly 'choco'
+2023-06-04 00:53:35,706 16472 [DEBUG] - Adding new type 'PythonService' for type 'IListSourceRunner' from assembly 'choco'
+2023-06-04 00:53:35,707 16472 [DEBUG] - Adding new type 'PythonService' for type 'IInstallSourceRunner' from assembly 'choco'
+2023-06-04 00:53:35,708 16472 [DEBUG] - Adding new type 'PythonService' for type 'IUninstallSourceRunner' from assembly 'choco'
+2023-06-04 00:53:35,708 16472 [DEBUG] - Adding new type 'RubyGemsService' for type 'IAlternativeSourceRunner' from assembly 'choco'
+2023-06-04 00:53:35,708 16472 [DEBUG] - Adding new type 'RubyGemsService' for type 'IListSourceRunner' from assembly 'choco'
+2023-06-04 00:53:35,709 16472 [DEBUG] - Adding new type 'RubyGemsService' for type 'IInstallSourceRunner' from assembly 'choco'
+2023-06-04 00:53:35,709 16472 [DEBUG] - Adding new type 'SystemStateValidation' for type 'IValidation' from assembly 'choco'
+2023-06-04 00:53:35,924 16472 [DEBUG] - Adding new type 'EmptyOrInvalidUrlMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,925 16472 [DEBUG] - Adding new type 'FrameWorkReferencesMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,927 16472 [DEBUG] - Adding new type 'IconMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,927 16472 [DEBUG] - Adding new type 'LicenseMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,928 16472 [DEBUG] - Adding new type 'PackageTypesMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,928 16472 [DEBUG] - Adding new type 'ReadmeMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,929 16472 [DEBUG] - Adding new type 'RepositoryMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,929 16472 [DEBUG] - Adding new type 'RequireLicenseAcceptanceMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,930 16472 [DEBUG] - Adding new type 'ServicableMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,930 16472 [DEBUG] - Adding new type 'VersionMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:35,937 16472 [DEBUG] - Registering new command 'list' in assembly 'choco'
+2023-06-04 00:53:35,938 16472 [DEBUG] - Registering new command 'template' in assembly 'choco'
+2023-06-04 00:53:35,938 16472 [DEBUG] - Registering new command 'export' in assembly 'choco'
+2023-06-04 00:53:35,939 16472 [DEBUG] - Registering new command 'info' in assembly 'choco'
+2023-06-04 00:53:35,939 16472 [DEBUG] - Registering new command 'help' in assembly 'choco'
+2023-06-04 00:53:35,939 16472 [DEBUG] - Registering new command 'config' in assembly 'choco'
+2023-06-04 00:53:35,940 16472 [DEBUG] - Registering new command 'feature' in assembly 'choco'
+2023-06-04 00:53:35,940 16472 [DEBUG] - Registering new command 'new' in assembly 'choco'
+2023-06-04 00:53:35,941 16472 [DEBUG] - Registering new command 'outdated' in assembly 'choco'
+2023-06-04 00:53:35,941 16472 [DEBUG] - Registering new command 'pack' in assembly 'choco'
+2023-06-04 00:53:35,942 16472 [DEBUG] - Registering new command 'pin' in assembly 'choco'
+2023-06-04 00:53:35,942 16472 [DEBUG] - Registering new command 'push' in assembly 'choco'
+2023-06-04 00:53:35,943 16472 [DEBUG] - Registering new command 'apikey' in assembly 'choco'
+2023-06-04 00:53:35,943 16472 [DEBUG] - Registering new command 'source' in assembly 'choco'
+2023-06-04 00:53:35,943 16472 [DEBUG] - Registering new command 'uninstall' in assembly 'choco'
+2023-06-04 00:53:35,944 16472 [DEBUG] - Registering new command 'upgrade' in assembly 'choco'
+2023-06-04 00:53:35,944 16472 [DEBUG] - Registering new command 'search' in assembly 'choco'
+2023-06-04 00:53:35,945 16472 [DEBUG] - Registering new command 'unpackself' in assembly 'choco'
+2023-06-04 00:53:35,945 16472 [DEBUG] - Registering new command 'install' in assembly 'choco'
+2023-06-04 00:53:35,951 16472 [DEBUG] - Attempting to create directory "C:\ProgramData\chocolatey\config".
+2023-06-04 00:53:36,024 16472 [INFO ] - ============================================================
+2023-06-04 00:53:36,326 16472 [DEBUG] - Attempting to replace "C:\ProgramData\chocolatey\config\chocolatey.config"
+ with "C:\ProgramData\chocolatey\config\chocolatey.config.16472.update".
+ Backup placed at "C:\ProgramData\chocolatey\config\chocolatey.config.backup".
+2023-06-04 00:53:36,329 16472 [DEBUG] - Attempting to copy "C:\ProgramData\chocolatey\config\chocolatey.config.16472.update"
+ to "C:\ProgramData\chocolatey\config\chocolatey.config".
+2023-06-04 00:53:36,331 16472 [DEBUG] - Attempting to delete file "C:\ProgramData\chocolatey\config\chocolatey.config.16472.update".
+2023-06-04 00:53:36,337 16472 [INFO ] - 2.0.0
+2023-06-04 00:53:36,339 16472 [DEBUG] - Exiting with 0
+2023-06-04 00:53:37,928 29948 [DEBUG] - XmlConfiguration is now operational
+2023-06-04 00:53:37,957 29948 [DEBUG] - Adding new type 'CygwinService' for type 'IAlternativeSourceRunner' from assembly 'choco'
+2023-06-04 00:53:37,957 29948 [DEBUG] - Adding new type 'CygwinService' for type 'IInstallSourceRunner' from assembly 'choco'
+2023-06-04 00:53:37,958 29948 [DEBUG] - Adding new type 'PythonService' for type 'IAlternativeSourceRunner' from assembly 'choco'
+2023-06-04 00:53:37,958 29948 [DEBUG] - Adding new type 'PythonService' for type 'IListSourceRunner' from assembly 'choco'
+2023-06-04 00:53:37,959 29948 [DEBUG] - Adding new type 'PythonService' for type 'IInstallSourceRunner' from assembly 'choco'
+2023-06-04 00:53:37,959 29948 [DEBUG] - Adding new type 'PythonService' for type 'IUninstallSourceRunner' from assembly 'choco'
+2023-06-04 00:53:37,959 29948 [DEBUG] - Adding new type 'RubyGemsService' for type 'IAlternativeSourceRunner' from assembly 'choco'
+2023-06-04 00:53:37,960 29948 [DEBUG] - Adding new type 'RubyGemsService' for type 'IListSourceRunner' from assembly 'choco'
+2023-06-04 00:53:37,960 29948 [DEBUG] - Adding new type 'RubyGemsService' for type 'IInstallSourceRunner' from assembly 'choco'
+2023-06-04 00:53:37,961 29948 [DEBUG] - Adding new type 'SystemStateValidation' for type 'IValidation' from assembly 'choco'
+2023-06-04 00:53:38,150 29948 [DEBUG] - Adding new type 'EmptyOrInvalidUrlMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,151 29948 [DEBUG] - Adding new type 'FrameWorkReferencesMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,152 29948 [DEBUG] - Adding new type 'IconMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,152 29948 [DEBUG] - Adding new type 'LicenseMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,152 29948 [DEBUG] - Adding new type 'PackageTypesMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,153 29948 [DEBUG] - Adding new type 'ReadmeMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,153 29948 [DEBUG] - Adding new type 'RepositoryMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,154 29948 [DEBUG] - Adding new type 'RequireLicenseAcceptanceMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,154 29948 [DEBUG] - Adding new type 'ServicableMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,155 29948 [DEBUG] - Adding new type 'VersionMetadataRule' for type 'IMetadataRule' from assembly 'choco'
+2023-06-04 00:53:38,159 29948 [DEBUG] - Registering new command 'list' in assembly 'choco'
+2023-06-04 00:53:38,160 29948 [DEBUG] - Registering new command 'template' in assembly 'choco'
+2023-06-04 00:53:38,160 29948 [DEBUG] - Registering new command 'export' in assembly 'choco'
+2023-06-04 00:53:38,161 29948 [DEBUG] - Registering new command 'info' in assembly 'choco'
+2023-06-04 00:53:38,161 29948 [DEBUG] - Registering new command 'help' in assembly 'choco'
+2023-06-04 00:53:38,162 29948 [DEBUG] - Registering new command 'config' in assembly 'choco'
+2023-06-04 00:53:38,162 29948 [DEBUG] - Registering new command 'feature' in assembly 'choco'
+2023-06-04 00:53:38,162 29948 [DEBUG] - Registering new command 'new' in assembly 'choco'
+2023-06-04 00:53:38,163 29948 [DEBUG] - Registering new command 'outdated' in assembly 'choco'
+2023-06-04 00:53:38,163 29948 [DEBUG] - Registering new command 'pack' in assembly 'choco'
+2023-06-04 00:53:38,164 29948 [DEBUG] - Registering new command 'pin' in assembly 'choco'
+2023-06-04 00:53:38,164 29948 [DEBUG] - Registering new command 'push' in assembly 'choco'
+2023-06-04 00:53:38,164 29948 [DEBUG] - Registering new command 'apikey' in assembly 'choco'
+2023-06-04 00:53:38,165 29948 [DEBUG] - Registering new command 'source' in assembly 'choco'
+2023-06-04 00:53:38,165 29948 [DEBUG] - Registering new command 'uninstall' in assembly 'choco'
+2023-06-04 00:53:38,165 29948 [DEBUG] - Registering new command 'upgrade' in assembly 'choco'
+2023-06-04 00:53:38,165 29948 [DEBUG] - Registering new command 'search' in assembly 'choco'
+2023-06-04 00:53:38,167 29948 [DEBUG] - Registering new command 'unpackself' in assembly 'choco'
+2023-06-04 00:53:38,167 29948 [DEBUG] - Registering new command 'install' in assembly 'choco'
+2023-06-04 00:53:38,222 29948 [INFO ] - ============================================================
+2023-06-04 00:53:38,499 29948 [INFO ] - Chocolatey v2.0.0
+2023-06-04 00:53:38,507 29948 [DEBUG] - Chocolatey is running on Windows v 10.0.22621.0
+2023-06-04 00:53:38,509 29948 [DEBUG] - Attempting to delete file "C:/ProgramData/chocolatey/choco.exe.old".
+2023-06-04 00:53:38,509 29948 [DEBUG] - Attempting to delete file "C:\ProgramData\chocolatey\choco.exe.old".
+2023-06-04 00:53:38,515 29948 [DEBUG] - Command line: "C:\ProgramData\chocolatey\choco.exe" install ffmpeg
+2023-06-04 00:53:38,516 29948 [DEBUG] - Received arguments: install ffmpeg
+2023-06-04 00:53:38,545 29948 [DEBUG] - RemovePendingPackagesTask is now ready and waiting for PreRunMessage.
+2023-06-04 00:53:38,549 29948 [DEBUG] - Sending message 'PreRunMessage' out if there are subscribers...
+2023-06-04 00:53:38,553 29948 [DEBUG] - [Pending] Removing all pending packages that should not be considered installed...
+2023-06-04 00:53:38,582 29948 [DEBUG] - Performing validation checks.
+2023-06-04 00:53:38,584 29948 [DEBUG] - Global Configuration Validation Checks:
+2023-06-04 00:53:38,585 29948 [DEBUG] -  - Package Exit Code / Exit On Reboot = Checked
+2023-06-04 00:53:38,587 29948 [DEBUG] - System State Validation Checks:
+2023-06-04 00:53:38,588 29948 [DEBUG] -  Reboot Requirement Checks:
+2023-06-04 00:53:38,589 29948 [DEBUG] -  - Pending Computer Rename = Checked
+2023-06-04 00:53:38,590 29948 [DEBUG] -  - Pending Component Based Servicing = Flagged
+2023-06-04 00:53:38,593 29948 [INFO ] - 2 validations performed. 1 success(es), 1 warning(s), and 0 error(s).
+2023-06-04 00:53:38,594 29948 [INFO ] - 
+2023-06-04 00:53:38,596 29948 [WARN ] - Validation Warnings:
+2023-06-04 00:53:38,599 29948 [WARN ] -  - A pending system reboot request has been detected, however, this is
+   being ignored due to the current Chocolatey configuration.  If you
+   want to halt when this occurs, then either set the global feature
+   using:
+     choco feature enable -name=exitOnRebootDetected
+   or pass the option --exit-when-reboot-detected.
+
+2023-06-04 00:53:38,612 29948 [DEBUG] - The source 'https://community.chocolatey.org/api/v2/' evaluated to a 'normal' source type
+2023-06-04 00:53:38,613 29948 [DEBUG] - 
+NOTE: Hiding sensitive configuration data! Please double and triple
+ check to be sure no sensitive data is shown, especially if copying
+ output to a gist for review.
+2023-06-04 00:53:38,618 29948 [DEBUG] - Configuration: CommandName='install'|
+CacheLocation='C:\Users\fr\AppData\Local\Temp\chocolatey'|
+CommandExecutionTimeoutSeconds='2700'|WebRequestTimeoutSeconds='30'|
+Sources='https://community.chocolatey.org/api/v2/'|SourceType='normal'|
+ShowOnlineHelp='False'|Debug='False'|Verbose='False'|Trace='False'|
+Force='False'|Noop='False'|HelpRequested='False'|
+UnsuccessfulParsing='False'|RegularOutput='True'|QuietOutput='False'|
+PromptForConfirmation='True'|DisableCompatibilityChecks='False'|
+AcceptLicense='False'|AllowUnofficialBuild='False'|Input='ffmpeg'|
+AllVersions='False'|SkipPackageInstallProvider='False'|
+SkipHookScripts='False'|PackageNames='ffmpeg'|Prerelease='False'|
+ForceX86='False'|OverrideArguments='False'|NotSilent='False'|
+ApplyPackageParametersToDependencies='False'|
+ApplyInstallArgumentsToDependencies='False'|IgnoreDependencies='False'|
+AllowDowngrade='False'|ForceDependencies='False'|PinPackage='False'|
+Information.PlatformType='Windows'|
+Information.PlatformVersion='10.0.22621.0'|
+Information.PlatformName='Windows 10'|
+Information.ChocolateyVersion='2.0.0.0'|
+Information.ChocolateyProductVersion='2.0.0'|
+Information.FullName='choco, Version=2.0.0.0, Culture=neutral, PublicKeyToken=79d02ea9cad655eb'|
+
+Information.Is64BitOperatingSystem='True'|
+Information.Is64BitProcess='True'|Information.IsInteractive='True'|
+Information.UserName='fr'|Information.UserDomainName='LAPTOP-CDNQEOJM'|
+Information.IsUserAdministrator='True'|
+Information.IsUserSystemAccount='False'|
+Information.IsUserRemoteDesktop='False'|
+Information.IsUserRemote='True'|
+Information.IsProcessElevated='True'|
+Information.IsLicensedVersion='False'|Information.LicenseType='Foss'|
+Information.CurrentDirectory='C:\Windows\system32'|
+Features.AutoUninstaller='True'|Features.ChecksumFiles='True'|
+Features.AllowEmptyChecksums='False'|
+Features.AllowEmptyChecksumsSecure='True'|
+Features.FailOnAutoUninstaller='False'|
+Features.FailOnStandardError='False'|Features.UsePowerShellHost='True'|
+Features.LogEnvironmentValues='False'|Features.LogWithoutColor='False'|
+Features.VirusCheck='False'|
+Features.FailOnInvalidOrMissingLicense='False'|
+Features.IgnoreInvalidOptionsSwitches='True'|
+Features.UsePackageExitCodes='True'|
+Features.UseEnhancedExitCodes='False'|
+Features.UseFipsCompliantChecksums='False'|
+Features.ShowNonElevatedWarnings='True'|
+Features.ShowDownloadProgress='True'|
+Features.StopOnFirstPackageFailure='False'|
+Features.UseRememberedArgumentsForUpgrades='False'|
+Features.IgnoreUnfoundPackagesOnUpgradeOutdated='False'|
+Features.SkipPackageUpgradesWhenNotInstalled='False'|
+Features.RemovePackageInformationOnUninstall='False'|
+Features.ExitOnRebootDetected='False'|
+Features.LogValidationResultsOnWarnings='True'|
+Features.UsePackageRepositoryOptimizations='True'|
+ListCommand.LocalOnly='False'|ListCommand.IdOnly='False'|
+ListCommand.IncludeRegistryPrograms='False'|ListCommand.PageSize='25'|
+ListCommand.Exact='False'|ListCommand.ByIdOnly='False'|
+ListCommand.ByTagOnly='False'|ListCommand.IdStartsWith='False'|
+ListCommand.OrderByPopularity='False'|ListCommand.ApprovedOnly='False'|
+ListCommand.DownloadCacheAvailable='False'|
+ListCommand.NotBroken='False'|
+ListCommand.IncludeVersionOverrides='False'|
+ListCommand.ExplicitPageSize='False'|
+ListCommand.ExplicitSource='False'|
+UpgradeCommand.FailOnUnfound='False'|
+UpgradeCommand.FailOnNotInstalled='False'|
+UpgradeCommand.NotifyOnlyAvailableUpgrades='False'|
+UpgradeCommand.ExcludePrerelease='False'|
+NewCommand.AutomaticPackage='False'|
+NewCommand.UseOriginalTemplate='False'|SourceCommand.Command='unknown'|
+SourceCommand.Priority='0'|SourceCommand.BypassProxy='False'|
+SourceCommand.AllowSelfService='False'|
+SourceCommand.VisibleToAdminsOnly='False'|
+FeatureCommand.Command='unknown'|ConfigCommand.Command='Unknown'|
+ApiKeyCommand.Command='Unknown'|PinCommand.Command='Unknown'|
+OutdatedCommand.IgnorePinned='False'|
+ExportCommand.IncludeVersionNumbers='False'|Proxy.BypassOnLocal='True'|
+TemplateCommand.Command='unknown'|
+2023-06-04 00:53:38,619 29948 [DEBUG] - _ Chocolatey:ChocolateyInstallCommand - Normal Run Mode _
+2023-06-04 00:53:38,623 29948 [INFO ] - Installing the following packages:
+2023-06-04 00:53:38,626 29948 [INFO ] - ffmpeg
+2023-06-04 00:53:38,639 29948 [INFO ] - By installing, you accept licenses for the packages.
+2023-06-04 00:53:38,754 29948 [DEBUG] - Running list with the following filter = ''
+2023-06-04 00:53:38,755 29948 [DEBUG] - --- Start of List ---
+2023-06-04 00:53:38,767 29948 [DEBUG] - Resolving resource PackageSearchResource for source C:\ProgramData\chocolatey\lib
+2023-06-04 00:53:38,865 29948 [DEBUG] - chocolatey 2.0.0
+2023-06-04 00:53:38,867 29948 [DEBUG] - --- End of List ---
+2023-06-04 00:53:38,869 29948 [DEBUG] - Resolving resource ListResource for source https://community.chocolatey.org/api/v2/
+2023-06-04 00:53:39,763 29948 [INFO ] - [NuGet] Enhanced retry: HttpRetryHandler is in a state that retry would have been abandoned or not waited if it were not enabled.
+2023-06-04 00:53:40,851 29948 [INFO ] - [NuGet]   GET https://community.chocolatey.org/api/v2/$metadata
+2023-06-04 00:53:41,139 29948 [INFO ] - [NuGet]   OK https://community.chocolatey.org/api/v2/$metadata 286ms
+2023-06-04 00:53:41,165 29948 [INFO ] - [NuGet] Enhanced retry: HttpRetryHandler is in a state that retry would have been abandoned or not waited if it were not enabled.
+2023-06-04 00:53:42,367 29948 [INFO ] - [NuGet]   GET https://community.chocolatey.org/api/v2/Packages()?$filter=(tolower(Id) eq 'ffmpeg') and IsLatestVersion&semVerLevel=2.0.0
+2023-06-04 00:53:42,991 29948 [INFO ] - [NuGet]   OK https://community.chocolatey.org/api/v2/Packages()?$filter=(tolower(Id) eq 'ffmpeg') and IsLatestVersion&semVerLevel=2.0.0 623ms
+2023-06-04 00:53:43,015 29948 [DEBUG] - Resolving resource DependencyInfoResource for source https://community.chocolatey.org/api/v2/
+2023-06-04 00:53:43,042 29948 [INFO ] - [NuGet]   GET https://community.chocolatey.org/api/v2/Packages(Id='ffmpeg',Version='6.0.0')
+2023-06-04 00:53:43,383 29948 [INFO ] - [NuGet]   NotFound https://community.chocolatey.org/api/v2/Packages(Id='ffmpeg',Version='6.0.0') 340ms
+2023-06-04 00:53:43,388 29948 [INFO ] - [NuGet]   GET https://community.chocolatey.org/api/v2/FindPackagesById()?id='ffmpeg'&semVerLevel=2.0.0
+2023-06-04 00:53:43,716 29948 [INFO ] - [NuGet]   OK https://community.chocolatey.org/api/v2/FindPackagesById()?id='ffmpeg'&semVerLevel=2.0.0 326ms
+2023-06-04 00:53:44,938 29948 [INFO ] - [NuGet]   GET http://community.chocolatey.org/api/v2/FindPackagesById?id='ffmpeg'&$skiptoken='ffmpeg','3.4.2'
+2023-06-04 00:53:45,858 29948 [INFO ] - [NuGet]   OK http://community.chocolatey.org/api/v2/FindPackagesById?id='ffmpeg'&$skiptoken='ffmpeg','3.4.2' 919ms
+2023-06-04 00:53:46,757 29948 [INFO ] - [NuGet] Resolving dependency information took 0 ms
+2023-06-04 00:53:46,758 29948 [DEBUG] - Resolving resource DownloadResource for source https://community.chocolatey.org/api/v2/
+2023-06-04 00:53:46,770 29948 [DEBUG] - Attempting to delete file "".
+2023-06-04 00:53:46,779 29948 [INFO ] - [NuGet]   GET https://community.chocolatey.org/api/v2/package/ffmpeg/6.0
+2023-06-04 00:53:47,812 29948 [INFO ] - [NuGet]   OK https://community.chocolatey.org/api/v2/package/ffmpeg/6.0 1031ms
+2023-06-04 00:53:47,822 29948 [INFO ] - [NuGet] Acquiring lock for the installation of ffmpeg 6.0
+2023-06-04 00:53:47,836 29948 [INFO ] - [NuGet] Acquired lock for the installation of ffmpeg 6.0
+2023-06-04 00:53:53,721 29948 [INFO ] - [NuGet] Installed ffmpeg 6.0 from https://community.chocolatey.org/api/v2/ with content hash ghXb6GIsiZvSIGld7Vn4B7qxAkjJlv9C+g/BiYQy7k/tI1QXHy5+JIfjr3P7KM54Knvs7PeSlzMuriBoE8bzWQ==.
+2023-06-04 00:53:53,732 29948 [INFO ] - [NuGet] Adding package 'ffmpeg.6.0.0' to folder 'C:\ProgramData\chocolatey\lib'
+2023-06-04 00:53:53,777 29948 [INFO ] - [NuGet] Added package 'ffmpeg.6.0.0' to folder 'C:\ProgramData\chocolatey\lib'
+2023-06-04 00:53:53,780 29948 [INFO ] - 
+ffmpeg v6.0.0 [Approved]
+2023-06-04 00:53:53,797 29948 [INFO ] - ffmpeg package files install completed. Performing other installation steps.
+2023-06-04 00:53:53,830 29948 [DEBUG] - Setting installer args for ffmpeg
+2023-06-04 00:53:53,831 29948 [DEBUG] - Setting package parameters for ffmpeg
+2023-06-04 00:53:53,832 29948 [DEBUG] - Contents of 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\chocolateyInstall.ps1':
+2023-06-04 00:53:53,837 29948 [DEBUG] - $ErrorActionPreference = 'Stop'
+
+$toolsPath = Split-Path $MyInvocation.MyCommand.Definition
+
+$packageArgs = @{
+  PackageName    = $env:ChocolateyPackageName
+  FileFullPath64 = "$toolsPath\ffmpeg-release-essentials.7z"
+  Destination    = $toolsPath
+}
+
+Get-ChildItem $toolsPath\* | Where-Object { $_.PSISContainer } | Remove-Item -Recurse -Force #remove older package dirs
+Get-ChocolateyUnzip @packageArgs
+
+Write-Host "Removing extracted archive."
+Remove-Item $packageArgs['FileFullPath64'] -ea 0
+
+$maxTries = 3
+
+for ($tries = 0; $tries -lt $maxTries; $tries++) {
+  Write-Host "Sleeping for 2 seconds to allow anti-viruses to finish scanning..."
+  Start-Sleep -Seconds 2
+  try {
+    Write-Host "Renaming ffmpeg directory to common name (Try $($tries + 1) / $maxTries)"
+    Move-Item $toolsPath\ffmpeg-* $toolsPath\ffmpeg
+    Write-Host "Successfully renamed directory."
+    break
+  }
+  catch {
+    if (($tries + 1) -eq $maxTries) {
+      throw "Unable to rename directory, and max tries achieved. Aborting installation..."
+    }
+    else {
+      Write-Warning "Unable to rename directory. Retrying..."
+    }
+  }
+}
+
+2023-06-04 00:53:53,838 29948 [INFO ] - The package ffmpeg wants to run 'chocolateyInstall.ps1'.
+2023-06-04 00:53:53,841 29948 [INFO ] - Note: If you don't run this script, the installation will fail.
+2023-06-04 00:53:53,844 29948 [INFO ] - Note: To confirm automatically next time, use '-y' or consider:
+2023-06-04 00:53:53,845 29948 [INFO ] - choco feature enable -n allowGlobalConfirmation
+2023-06-04 00:53:53,858 29948 [INFO ] - Do you want to run the script?
+2023-06-04 00:53:53,859 29948 [INFO ] -  1) yes
+2023-06-04 00:53:53,860 29948 [INFO ] -  2) all - yes to all
+2023-06-04 00:53:53,861 29948 [INFO ] -  3) no
+2023-06-04 00:53:53,862 29948 [INFO ] -  4) print
+2023-06-04 00:53:53,865 29948 [ERROR] - Timeout or your choice of '' is not a valid selection.
+2023-06-04 00:53:53,869 29948 [WARN ] - You must select an answer
+2023-06-04 00:53:53,875 29948 [INFO ] - Do you want to run the script?
+2023-06-04 00:53:53,875 29948 [INFO ] -  1) yes
+2023-06-04 00:53:53,876 29948 [INFO ] -  2) all - yes to all
+2023-06-04 00:53:53,877 29948 [INFO ] -  3) no
+2023-06-04 00:53:53,878 29948 [INFO ] -  4) print
+2023-06-04 00:53:53,879 29948 [ERROR] - Timeout or your choice of '' is not a valid selection.
+2023-06-04 00:53:53,884 29948 [WARN ] - You must select an answer
+2023-06-04 00:53:53,887 29948 [INFO ] - Do you want to run the script?
+2023-06-04 00:53:53,887 29948 [INFO ] -  1) yes
+2023-06-04 00:53:53,890 29948 [INFO ] -  2) all - yes to all
+2023-06-04 00:53:53,891 29948 [INFO ] -  3) no
+2023-06-04 00:53:53,892 29948 [INFO ] -  4) print
+2023-06-04 00:53:53,894 29948 [ERROR] - Timeout or your choice of '' is not a valid selection.
+2023-06-04 00:53:53,898 29948 [WARN ] - You must select an answer
+2023-06-04 00:53:53,902 29948 [INFO ] - Do you want to run the script?
+2023-06-04 00:53:53,902 29948 [INFO ] -  1) yes
+2023-06-04 00:53:53,903 29948 [INFO ] -  2) all - yes to all
+2023-06-04 00:53:53,904 29948 [INFO ] -  3) no
+2023-06-04 00:53:53,912 29948 [INFO ] -  4) print
+2023-06-04 00:53:53,914 29948 [ERROR] - Timeout or your choice of '' is not a valid selection.
+2023-06-04 00:53:53,918 29948 [WARN ] - You must select an answer
+2023-06-04 00:53:53,924 29948 [INFO ] - Do you want to run the script?
+2023-06-04 00:53:53,924 29948 [INFO ] -  1) yes
+2023-06-04 00:53:53,925 29948 [INFO ] -  2) all - yes to all
+2023-06-04 00:53:53,925 29948 [INFO ] -  3) no
+2023-06-04 00:53:53,927 29948 [INFO ] -  4) print
+2023-06-04 00:53:58,210 29948 [INFO ] - Choice selected: 'yes'
+2023-06-04 00:53:58,222 29948 [DEBUG] - Calling built-in PowerShell host with ['[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = '';[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::SystemDefault; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\chocolateyInstall.ps1' -installArguments '' -packageParameters '' -preRunHookScripts $null -postRunHookScripts $null']
+2023-06-04 00:53:58,225 29948 [DEBUG] - Redirecting System.Management.Automation.resources, Version=3.0.0.0, Culture=zh-CN, PublicKeyToken=31bf3856ad364e35, requested by ''
+2023-06-04 00:53:58,385 29948 [DEBUG] - Host version is 5.1.22621.1, PowerShell Version is '5.1.22621.963' and CLR Version is '4.0.30319.42000'.
+2023-06-04 00:53:58,502 29948 [INFO ] - VERBOSE: Exporting function 'Format-FileSize'.
+2023-06-04 00:53:58,503 29948 [INFO ] - VERBOSE: Exporting function 'Get-ChecksumValid'.
+2023-06-04 00:53:58,503 29948 [INFO ] - VERBOSE: Exporting function 'Get-ChocolateyPath'.
+2023-06-04 00:53:58,504 29948 [INFO ] - VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+2023-06-04 00:53:58,504 29948 [INFO ] - VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+2023-06-04 00:53:58,504 29948 [INFO ] - VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+2023-06-04 00:53:58,505 29948 [INFO ] - VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+2023-06-04 00:53:58,505 29948 [INFO ] - VERBOSE: Exporting function 'Get-FtpFile'.
+2023-06-04 00:53:58,505 29948 [INFO ] - VERBOSE: Exporting function 'Get-OSArchitectureWidth'.
+2023-06-04 00:53:58,505 29948 [INFO ] - VERBOSE: Exporting function 'Get-PackageParameters'.
+2023-06-04 00:53:58,507 29948 [INFO ] - VERBOSE: Exporting function 'Get-PackageParametersBuiltIn'.
+2023-06-04 00:53:58,507 29948 [INFO ] - VERBOSE: Exporting function 'Get-ToolsLocation'.
+2023-06-04 00:53:58,508 29948 [INFO ] - VERBOSE: Exporting function 'Get-UACEnabled'.
+2023-06-04 00:53:58,509 29948 [INFO ] - VERBOSE: Exporting function 'Get-UninstallRegistryKey'.
+2023-06-04 00:53:58,509 29948 [INFO ] - VERBOSE: Exporting function 'Get-VirusCheckValid'.
+2023-06-04 00:53:58,509 29948 [INFO ] - VERBOSE: Exporting function 'Get-WebFile'.
+2023-06-04 00:53:58,510 29948 [INFO ] - VERBOSE: Exporting function 'Get-WebFileName'.
+2023-06-04 00:53:58,510 29948 [INFO ] - VERBOSE: Exporting function 'Get-WebHeaders'.
+2023-06-04 00:53:58,511 29948 [INFO ] - VERBOSE: Exporting function 'Install-BinFile'.
+2023-06-04 00:53:58,511 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+2023-06-04 00:53:58,512 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+2023-06-04 00:53:58,512 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+2023-06-04 00:53:58,512 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+2023-06-04 00:53:58,513 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+2023-06-04 00:53:58,513 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyPath'.
+2023-06-04 00:53:58,514 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+2023-06-04 00:53:58,514 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+2023-06-04 00:53:58,515 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+2023-06-04 00:53:58,515 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+2023-06-04 00:53:58,515 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+2023-06-04 00:53:58,516 29948 [INFO ] - VERBOSE: Exporting function 'Install-Vsix'.
+2023-06-04 00:53:58,516 29948 [INFO ] - VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+2023-06-04 00:53:58,516 29948 [INFO ] - VERBOSE: Exporting function 'Set-PowerShellExitCode'.
+2023-06-04 00:53:58,517 29948 [INFO ] - VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+2023-06-04 00:53:58,518 29948 [INFO ] - VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+2023-06-04 00:53:58,518 29948 [INFO ] - VERBOSE: Exporting function 'Uninstall-BinFile'.
+2023-06-04 00:53:58,518 29948 [INFO ] - VERBOSE: Exporting function 'Uninstall-ChocolateyEnvironmentVariable'.
+2023-06-04 00:53:58,519 29948 [INFO ] - VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+2023-06-04 00:53:58,519 29948 [INFO ] - VERBOSE: Exporting function 'Uninstall-ChocolateyZipPackage'.
+2023-06-04 00:53:58,520 29948 [INFO ] - VERBOSE: Exporting function 'Update-SessionEnvironment'.
+2023-06-04 00:53:58,520 29948 [INFO ] - VERBOSE: Exporting function 'Write-FunctionCallLogMessage'.
+2023-06-04 00:53:58,521 29948 [INFO ] - VERBOSE: Exporting alias 'Get-ProcessorBits'.
+2023-06-04 00:53:58,522 29948 [INFO ] - VERBOSE: Exporting alias 'Get-OSBitness'.
+2023-06-04 00:53:58,522 29948 [INFO ] - VERBOSE: Exporting alias 'Get-InstallRegistryKey'.
+2023-06-04 00:53:58,523 29948 [INFO ] - VERBOSE: Exporting alias 'Generate-BinFile'.
+2023-06-04 00:53:58,523 29948 [INFO ] - VERBOSE: Exporting alias 'Add-BinFile'.
+2023-06-04 00:53:58,524 29948 [INFO ] - VERBOSE: Exporting alias 'Start-ChocolateyProcess'.
+2023-06-04 00:53:58,524 29948 [INFO ] - VERBOSE: Exporting alias 'Invoke-ChocolateyProcess'.
+2023-06-04 00:53:58,525 29948 [INFO ] - VERBOSE: Exporting alias 'Remove-BinFile'.
+2023-06-04 00:53:58,525 29948 [INFO ] - VERBOSE: Exporting alias 'refreshenv'.
+2023-06-04 00:53:58,530 29948 [INFO ] - VERBOSE: Exporting function 'Format-FileSize'.
+2023-06-04 00:53:58,531 29948 [INFO ] - VERBOSE: Exporting function 'Get-ChecksumValid'.
+2023-06-04 00:53:58,531 29948 [INFO ] - VERBOSE: Exporting function 'Get-ChocolateyPath'.
+2023-06-04 00:53:58,532 29948 [INFO ] - VERBOSE: Exporting function 'Get-ChocolateyUnzip'.
+2023-06-04 00:53:58,532 29948 [INFO ] - VERBOSE: Exporting function 'Get-ChocolateyWebFile'.
+2023-06-04 00:53:58,533 29948 [INFO ] - VERBOSE: Exporting function 'Get-EnvironmentVariable'.
+2023-06-04 00:53:58,533 29948 [INFO ] - VERBOSE: Exporting function 'Get-EnvironmentVariableNames'.
+2023-06-04 00:53:58,533 29948 [INFO ] - VERBOSE: Exporting function 'Get-FtpFile'.
+2023-06-04 00:53:58,534 29948 [INFO ] - VERBOSE: Exporting function 'Get-OSArchitectureWidth'.
+2023-06-04 00:53:58,534 29948 [INFO ] - VERBOSE: Exporting function 'Get-PackageParameters'.
+2023-06-04 00:53:58,535 29948 [INFO ] - VERBOSE: Exporting function 'Get-PackageParametersBuiltIn'.
+2023-06-04 00:53:58,535 29948 [INFO ] - VERBOSE: Exporting function 'Get-ToolsLocation'.
+2023-06-04 00:53:58,535 29948 [INFO ] - VERBOSE: Exporting function 'Get-UACEnabled'.
+2023-06-04 00:53:58,535 29948 [INFO ] - VERBOSE: Exporting function 'Get-UninstallRegistryKey'.
+2023-06-04 00:53:58,537 29948 [INFO ] - VERBOSE: Exporting function 'Get-VirusCheckValid'.
+2023-06-04 00:53:58,537 29948 [INFO ] - VERBOSE: Exporting function 'Get-WebFile'.
+2023-06-04 00:53:58,537 29948 [INFO ] - VERBOSE: Exporting function 'Get-WebFileName'.
+2023-06-04 00:53:58,538 29948 [INFO ] - VERBOSE: Exporting function 'Get-WebHeaders'.
+2023-06-04 00:53:58,538 29948 [INFO ] - VERBOSE: Exporting function 'Install-BinFile'.
+2023-06-04 00:53:58,538 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyEnvironmentVariable'.
+2023-06-04 00:53:58,539 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyExplorerMenuItem'.
+2023-06-04 00:53:58,541 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyFileAssociation'.
+2023-06-04 00:53:58,542 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyInstallPackage'.
+2023-06-04 00:53:58,542 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyPackage'.
+2023-06-04 00:53:58,543 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyPath'.
+2023-06-04 00:53:58,543 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyPinnedTaskBarItem'.
+2023-06-04 00:53:58,544 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyPowershellCommand'.
+2023-06-04 00:53:58,544 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyShortcut'.
+2023-06-04 00:53:58,544 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyVsixPackage'.
+2023-06-04 00:53:58,545 29948 [INFO ] - VERBOSE: Exporting function 'Install-ChocolateyZipPackage'.
+2023-06-04 00:53:58,545 29948 [INFO ] - VERBOSE: Exporting function 'Install-Vsix'.
+2023-06-04 00:53:58,545 29948 [INFO ] - VERBOSE: Exporting function 'Set-EnvironmentVariable'.
+2023-06-04 00:53:58,545 29948 [INFO ] - VERBOSE: Exporting function 'Set-PowerShellExitCode'.
+2023-06-04 00:53:58,547 29948 [INFO ] - VERBOSE: Exporting function 'Start-ChocolateyProcessAsAdmin'.
+2023-06-04 00:53:58,547 29948 [INFO ] - VERBOSE: Exporting function 'Test-ProcessAdminRights'.
+2023-06-04 00:53:58,547 29948 [INFO ] - VERBOSE: Exporting function 'Uninstall-BinFile'.
+2023-06-04 00:53:58,547 29948 [INFO ] - VERBOSE: Exporting function 'Uninstall-ChocolateyEnvironmentVariable'.
+2023-06-04 00:53:58,548 29948 [INFO ] - VERBOSE: Exporting function 'Uninstall-ChocolateyPackage'.
+2023-06-04 00:53:58,549 29948 [INFO ] - VERBOSE: Exporting function 'Uninstall-ChocolateyZipPackage'.
+2023-06-04 00:53:58,549 29948 [INFO ] - VERBOSE: Exporting function 'Update-SessionEnvironment'.
+2023-06-04 00:53:58,550 29948 [INFO ] - VERBOSE: Exporting function 'Write-FunctionCallLogMessage'.
+2023-06-04 00:53:58,550 29948 [INFO ] - VERBOSE: Exporting alias 'Get-ProcessorBits'.
+2023-06-04 00:53:58,551 29948 [INFO ] - VERBOSE: Exporting alias 'Get-OSBitness'.
+2023-06-04 00:53:58,551 29948 [INFO ] - VERBOSE: Exporting alias 'Get-InstallRegistryKey'.
+2023-06-04 00:53:58,552 29948 [INFO ] - VERBOSE: Exporting alias 'Generate-BinFile'.
+2023-06-04 00:53:58,552 29948 [INFO ] - VERBOSE: Exporting alias 'Add-BinFile'.
+2023-06-04 00:53:58,553 29948 [INFO ] - VERBOSE: Exporting alias 'Start-ChocolateyProcess'.
+2023-06-04 00:53:58,553 29948 [INFO ] - VERBOSE: Exporting alias 'Invoke-ChocolateyProcess'.
+2023-06-04 00:53:58,553 29948 [INFO ] - VERBOSE: Exporting alias 'Remove-BinFile'.
+2023-06-04 00:53:58,554 29948 [INFO ] - VERBOSE: Exporting alias 'refreshenv'.
+2023-06-04 00:53:58,555 29948 [INFO ] - VERBOSE: Importing function 'Format-FileSize'.
+2023-06-04 00:53:58,556 29948 [INFO ] - VERBOSE: Importing function 'Get-ChecksumValid'.
+2023-06-04 00:53:58,556 29948 [INFO ] - VERBOSE: Importing function 'Get-ChocolateyPath'.
+2023-06-04 00:53:58,557 29948 [INFO ] - VERBOSE: Importing function 'Get-ChocolateyUnzip'.
+2023-06-04 00:53:58,557 29948 [INFO ] - VERBOSE: Importing function 'Get-ChocolateyWebFile'.
+2023-06-04 00:53:58,557 29948 [INFO ] - VERBOSE: Importing function 'Get-EnvironmentVariable'.
+2023-06-04 00:53:58,558 29948 [INFO ] - VERBOSE: Importing function 'Get-EnvironmentVariableNames'.
+2023-06-04 00:53:58,558 29948 [INFO ] - VERBOSE: Importing function 'Get-FtpFile'.
+2023-06-04 00:53:58,558 29948 [INFO ] - VERBOSE: Importing function 'Get-OSArchitectureWidth'.
+2023-06-04 00:53:58,559 29948 [INFO ] - VERBOSE: Importing function 'Get-PackageParameters'.
+2023-06-04 00:53:58,559 29948 [INFO ] - VERBOSE: Importing function 'Get-PackageParametersBuiltIn'.
+2023-06-04 00:53:58,560 29948 [INFO ] - VERBOSE: Importing function 'Get-ToolsLocation'.
+2023-06-04 00:53:58,560 29948 [INFO ] - VERBOSE: Importing function 'Get-UACEnabled'.
+2023-06-04 00:53:58,561 29948 [INFO ] - VERBOSE: Importing function 'Get-UninstallRegistryKey'.
+2023-06-04 00:53:58,561 29948 [INFO ] - VERBOSE: Importing function 'Get-VirusCheckValid'.
+2023-06-04 00:53:58,561 29948 [INFO ] - VERBOSE: Importing function 'Get-WebFile'.
+2023-06-04 00:53:58,562 29948 [INFO ] - VERBOSE: Importing function 'Get-WebFileName'.
+2023-06-04 00:53:58,562 29948 [INFO ] - VERBOSE: Importing function 'Get-WebHeaders'.
+2023-06-04 00:53:58,563 29948 [INFO ] - VERBOSE: Importing function 'Install-BinFile'.
+2023-06-04 00:53:58,564 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyEnvironmentVariable'.
+2023-06-04 00:53:58,564 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyExplorerMenuItem'.
+2023-06-04 00:53:58,565 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyFileAssociation'.
+2023-06-04 00:53:58,566 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyInstallPackage'.
+2023-06-04 00:53:58,566 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyPackage'.
+2023-06-04 00:53:58,566 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyPath'.
+2023-06-04 00:53:58,567 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyPinnedTaskBarItem'.
+2023-06-04 00:53:58,567 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyPowershellCommand'.
+2023-06-04 00:53:58,568 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyShortcut'.
+2023-06-04 00:53:58,568 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyVsixPackage'.
+2023-06-04 00:53:58,569 29948 [INFO ] - VERBOSE: Importing function 'Install-ChocolateyZipPackage'.
+2023-06-04 00:53:58,569 29948 [INFO ] - VERBOSE: Importing function 'Install-Vsix'.
+2023-06-04 00:53:58,569 29948 [INFO ] - VERBOSE: Importing function 'Set-EnvironmentVariable'.
+2023-06-04 00:53:58,570 29948 [INFO ] - VERBOSE: Importing function 'Set-PowerShellExitCode'.
+2023-06-04 00:53:58,570 29948 [INFO ] - VERBOSE: Importing function 'Start-ChocolateyProcessAsAdmin'.
+2023-06-04 00:53:58,571 29948 [INFO ] - VERBOSE: Importing function 'Test-ProcessAdminRights'.
+2023-06-04 00:53:58,571 29948 [INFO ] - VERBOSE: Importing function 'Uninstall-BinFile'.
+2023-06-04 00:53:58,571 29948 [INFO ] - VERBOSE: Importing function 'Uninstall-ChocolateyEnvironmentVariable'.
+2023-06-04 00:53:58,572 29948 [INFO ] - VERBOSE: Importing function 'Uninstall-ChocolateyPackage'.
+2023-06-04 00:53:58,572 29948 [INFO ] - VERBOSE: Importing function 'Uninstall-ChocolateyZipPackage'.
+2023-06-04 00:53:58,573 29948 [INFO ] - VERBOSE: Importing function 'Update-SessionEnvironment'.
+2023-06-04 00:53:58,573 29948 [INFO ] - VERBOSE: Importing function 'Write-FunctionCallLogMessage'.
+2023-06-04 00:53:58,574 29948 [INFO ] - VERBOSE: Importing alias 'Add-BinFile'.
+2023-06-04 00:53:58,574 29948 [INFO ] - VERBOSE: Importing alias 'Generate-BinFile'.
+2023-06-04 00:53:58,575 29948 [INFO ] - VERBOSE: Importing alias 'Get-InstallRegistryKey'.
+2023-06-04 00:53:58,575 29948 [INFO ] - VERBOSE: Importing alias 'Get-OSBitness'.
+2023-06-04 00:53:58,575 29948 [INFO ] - VERBOSE: Importing alias 'Get-ProcessorBits'.
+2023-06-04 00:53:58,576 29948 [INFO ] - VERBOSE: Importing alias 'Invoke-ChocolateyProcess'.
+2023-06-04 00:53:58,576 29948 [INFO ] - VERBOSE: Importing alias 'refreshenv'.
+2023-06-04 00:53:58,577 29948 [INFO ] - VERBOSE: Importing alias 'Remove-BinFile'.
+2023-06-04 00:53:58,577 29948 [INFO ] - VERBOSE: Importing alias 'Start-ChocolateyProcess'.
+2023-06-04 00:53:58,593 29948 [DEBUG] - ---------------------------Script Execution---------------------------
+2023-06-04 00:53:58,596 29948 [DEBUG] - Running 'ChocolateyScriptRunner' for ffmpeg v6.0 with packageScript 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\chocolateyInstall.ps1', packageFolder:'C:\ProgramData\chocolatey\lib\ffmpeg', installArguments: '', packageParameters: '', preRunHookScripts: '', postRunHookScripts: '',
+2023-06-04 00:53:58,601 29948 [DEBUG] - Running package script 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\chocolateyInstall.ps1'
+2023-06-04 00:53:58,635 29948 [DEBUG] - Running Get-ChocolateyUnzip -destination 'C:\ProgramData\chocolatey\lib\ffmpeg\tools' -packageName 'ffmpeg' -fileFullPath64 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg-release-essentials.7z' 
+2023-06-04 00:53:58,639 29948 [DEBUG] - Running Get-OSArchitectureWidth -compare '32' 
+2023-06-04 00:53:58,655 29948 [INFO ] - Extracting 64-bit C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg-release-essentials.7z to C:\ProgramData\chocolatey\lib\ffmpeg\tools...
+2023-06-04 00:53:58,661 29948 [DEBUG] - 7zip found at 'C:\ProgramData\chocolatey\tools\7z.exe'
+2023-06-04 00:53:58,672 29948 [DEBUG] - Executing command ['C:\ProgramData\chocolatey\tools\7z.exe' x -aoa -bd -bb1 -o"C:\ProgramData\chocolatey\lib\ffmpeg\tools" -y "C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg-release-essentials.7z"]
+2023-06-04 00:54:00,380 29948 [INFO ] - VERBOSE: 
+2023-06-04 00:54:00,382 29948 [INFO ] - VERBOSE: 1 file, 25797420 bytes (25 MiB)
+2023-06-04 00:54:00,385 29948 [INFO ] - VERBOSE: 7-Zip 21.07 (x86) : Copyright (c) 1999-2021 Igor Pavlov : 2021-12-26
+2023-06-04 00:54:00,386 29948 [INFO ] - VERBOSE: 
+2023-06-04 00:54:00,386 29948 [INFO ] - VERBOSE: Scanning the drive for archives:
+2023-06-04 00:54:00,387 29948 [INFO ] - VERBOSE: Extracting archive: C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg-release-essentials.7z
+2023-06-04 00:54:00,387 29948 [INFO ] - VERBOSE: 
+2023-06-04 00:54:00,389 29948 [INFO ] - VERBOSE: --
+2023-06-04 00:54:00,389 29948 [INFO ] - VERBOSE: Path = C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg-release-essentials.7z
+2023-06-04 00:54:00,390 29948 [INFO ] - VERBOSE: Type = 7z
+2023-06-04 00:54:00,391 29948 [INFO ] - VERBOSE: Physical Size = 25797420
+2023-06-04 00:54:00,391 29948 [INFO ] - VERBOSE: Method = LZMA2:192m LZMA:20 BCJ2
+2023-06-04 00:54:00,392 29948 [INFO ] - VERBOSE: Solid = +
+2023-06-04 00:54:00,393 29948 [INFO ] - VERBOSE: Headers Size = 1020
+2023-06-04 00:54:00,393 29948 [INFO ] - VERBOSE: Blocks = 2
+2023-06-04 00:54:00,393 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\
+2023-06-04 00:54:00,399 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\bin\
+2023-06-04 00:54:00,400 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\
+2023-06-04 00:54:00,400 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\presets\
+2023-06-04 00:54:00,401 29948 [INFO ] - VERBOSE: 
+2023-06-04 00:54:00,401 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\bootstrap.min.css
+2023-06-04 00:54:00,402 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-bitstream-filters.html
+2023-06-04 00:54:00,402 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-codecs.html
+2023-06-04 00:54:00,403 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-devices.html
+2023-06-04 00:54:00,403 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-filters.html
+2023-06-04 00:54:00,404 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\faq.html
+2023-06-04 00:54:00,404 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\default.css
+2023-06-04 00:54:00,405 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\developer.html
+2023-06-04 00:54:00,405 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-all.html
+2023-06-04 00:54:00,405 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-formats.html
+2023-06-04 00:54:00,407 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\fate.html
+2023-06-04 00:54:00,407 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-protocols.html
+2023-06-04 00:54:00,408 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-resampler.html
+2023-06-04 00:54:00,408 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg.html
+2023-06-04 00:54:00,408 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-scaler.html
+2023-06-04 00:54:00,409 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffprobe-all.html
+2023-06-04 00:54:00,409 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffmpeg-utils.html
+2023-06-04 00:54:00,410 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffprobe.html
+2023-06-04 00:54:00,411 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\general.html
+2023-06-04 00:54:00,411 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\git-howto.html
+2023-06-04 00:54:00,412 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\libavcodec.html
+2023-06-04 00:54:00,412 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\libavdevice.html
+2023-06-04 00:54:00,413 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\libavfilter.html
+2023-06-04 00:54:00,413 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\libavformat.html
+2023-06-04 00:54:00,414 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffplay.html
+2023-06-04 00:54:00,414 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\ffplay-all.html
+2023-06-04 00:54:00,415 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\libavutil.html
+2023-06-04 00:54:00,415 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\libswscale.html
+2023-06-04 00:54:00,415 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\mailing-list-faq.html
+2023-06-04 00:54:00,417 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\nut.html
+2023-06-04 00:54:00,417 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\libswresample.html
+2023-06-04 00:54:00,418 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\platform.html
+2023-06-04 00:54:00,418 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\doc\style.min.css
+2023-06-04 00:54:00,419 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\presets\libvpx-1080p.ffpreset
+2023-06-04 00:54:00,420 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\LICENSE
+2023-06-04 00:54:00,420 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\presets\libvpx-1080p50_60.ffpreset
+2023-06-04 00:54:00,421 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\presets\libvpx-360p.ffpreset
+2023-06-04 00:54:00,421 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\presets\libvpx-720p.ffpreset
+2023-06-04 00:54:00,422 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\presets\libvpx-720p50_60.ffpreset
+2023-06-04 00:54:00,422 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\README.txt
+2023-06-04 00:54:00,423 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\bin\ffprobe.exe
+2023-06-04 00:54:00,423 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\bin\ffmpeg.exe
+2023-06-04 00:54:00,424 29948 [INFO ] - VERBOSE: Everything is Ok
+2023-06-04 00:54:00,424 29948 [INFO ] - VERBOSE: 
+2023-06-04 00:54:00,429 29948 [INFO ] - VERBOSE: Folders: 4
+2023-06-04 00:54:00,430 29948 [INFO ] - VERBOSE: Size:       251984170
+2023-06-04 00:54:00,430 29948 [INFO ] - VERBOSE: Compressed: 25797420
+2023-06-04 00:54:00,431 29948 [INFO ] - VERBOSE: Files: 43
+2023-06-04 00:54:00,432 29948 [INFO ] - VERBOSE: - ffmpeg-6.0-essentials_build\bin\ffplay.exe
+2023-06-04 00:54:00,444 29948 [DEBUG] - $exitCode was passed null
+2023-06-04 00:54:00,446 29948 [DEBUG] - Command ['C:\ProgramData\chocolatey\tools\7z.exe' x -aoa -bd -bb1 -o"C:\ProgramData\chocolatey\lib\ffmpeg\tools" -y "C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg-release-essentials.7z"] exited with '0'.
+2023-06-04 00:54:00,455 29948 [DEBUG] - 7z exit code: 0
+2023-06-04 00:54:00,458 29948 [INFO ] - C:\ProgramData\chocolatey\lib\ffmpeg\tools
+2023-06-04 00:54:00,462 29948 [INFO ] - Removing extracted archive.
+2023-06-04 00:54:00,472 29948 [INFO ] - Sleeping for 2 seconds to allow anti-viruses to finish scanning...
+2023-06-04 00:54:02,489 29948 [INFO ] - Renaming ffmpeg directory to common name (Try 1 / 3)
+2023-06-04 00:54:02,497 29948 [INFO ] - Successfully renamed directory.
+2023-06-04 00:54:02,501 29948 [DEBUG] - ----------------------------------------------------------------------
+2023-06-04 00:54:02,504 29948 [DEBUG] - Built-in PowerShell host called with ['[System.Threading.Thread]::CurrentThread.CurrentCulture = '';[System.Threading.Thread]::CurrentThread.CurrentUICulture = '';[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::SystemDefault; & import-module -name 'C:\ProgramData\chocolatey\helpers\chocolateyInstaller.psm1'; & 'C:\ProgramData\chocolatey\helpers\chocolateyScriptRunner.ps1' -packageScript 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\chocolateyInstall.ps1' -installArguments '' -packageParameters '' -preRunHookScripts $null -postRunHookScripts $null'] exited with '0'.
+2023-06-04 00:54:02,510 29948 [DEBUG] - Calling command ['"C:\Windows\System32\shutdown.exe" /a']
+2023-06-04 00:54:02,752 29948 [DEBUG] - Command ['"C:\Windows\System32\shutdown.exe" /a'] exited with '1116'
+2023-06-04 00:54:02,819 29948 [DEBUG] - Capturing package files in 'C:\ProgramData\chocolatey\lib\ffmpeg'
+2023-06-04 00:54:02,821 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\ffmpeg-release-essentials.7z.txt'
+  with checksum '16CCABA9BCD49D2EA899C2E27FD60F2C'
+2023-06-04 00:54:02,875 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\ffmpeg.nupkg'
+  with checksum '9E96644B78795A1A77E5E54513866971'
+2023-06-04 00:54:02,875 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\ffmpeg.nuspec'
+  with checksum '100DDD930F1B2209907EF1EB2A399603'
+2023-06-04 00:54:02,877 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\legal\LICENSE.txt'
+  with checksum '3C34AFDC3ADF82D2448F12715A255122'
+2023-06-04 00:54:02,877 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\legal\VERIFICATION.txt'
+  with checksum '49161042F535A22B778A209089125C62'
+2023-06-04 00:54:02,878 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\chocolateyInstall.ps1'
+  with checksum 'CE5F9CD4A82F9DAA1BDB566F2774101D'
+2023-06-04 00:54:02,878 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\LICENSE'
+  with checksum 'D32239BCB673463AB874E80D47FAE504'
+2023-06-04 00:54:02,879 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\README.txt'
+  with checksum '1CB1E6743F198B098D6E839566A76D10'
+2023-06-04 00:54:03,047 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe'
+  with checksum '23FC9CCA41FBE39FE090A5E097839536'
+2023-06-04 00:54:03,214 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffplay.exe'
+  with checksum '94AA7AD97AE187EA90A155C9641EC3D7'
+2023-06-04 00:54:03,390 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe'
+  with checksum 'F1F3E856D52A5461AC091380D48265AD'
+2023-06-04 00:54:03,392 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\bootstrap.min.css'
+  with checksum '99D2B8992E26F67BC9E5DCA610635A60'
+2023-06-04 00:54:03,393 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\default.css'
+  with checksum '63D1BA9723F4C05412FE3B3DDF302847'
+2023-06-04 00:54:03,393 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\developer.html'
+  with checksum 'BA3BD9EDB402CFCC1CC52F4E4DE7F05B'
+2023-06-04 00:54:03,394 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\faq.html'
+  with checksum '22817B9F508500FE702C32CAB70495F0'
+2023-06-04 00:54:03,394 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\fate.html'
+  with checksum '0AB32C0B201E8DEF9CC6E8BEC1D5AE7E'
+2023-06-04 00:54:03,400 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-all.html'
+  with checksum 'D9181A6F76E53AF5460E19A09E2CD373'
+2023-06-04 00:54:03,400 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-bitstream-filters.html'
+  with checksum '1D37259B02C67F1586DC79A1A3305255'
+2023-06-04 00:54:03,401 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-codecs.html'
+  with checksum '1E522F92316A95DF9235AF4AAC820FA7'
+2023-06-04 00:54:03,402 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-devices.html'
+  with checksum 'B4242937EDA788719540C7F6F176C2D3'
+2023-06-04 00:54:03,406 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-filters.html'
+  with checksum '65AC9C6E13C009FAE4C7F6E56875C515'
+2023-06-04 00:54:03,407 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-formats.html'
+  with checksum 'E209B4A69DD99D37B86F82991F1C42F0'
+2023-06-04 00:54:03,407 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-protocols.html'
+  with checksum '354C997C4009C0ED231345C735F70DAC'
+2023-06-04 00:54:03,408 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-resampler.html'
+  with checksum 'F848FF36CD2CE746DF8A745B2AE70662'
+2023-06-04 00:54:03,408 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-scaler.html'
+  with checksum 'E900792AEAB95DFDD0161EB376EF601F'
+2023-06-04 00:54:03,409 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-utils.html'
+  with checksum '356142A80B591A3D7BBAA5A5365B201C'
+2023-06-04 00:54:03,410 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg.html'
+  with checksum '8A9887C01D58232C0B924C4F55D1CCA1'
+2023-06-04 00:54:03,414 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffplay-all.html'
+  with checksum '44BFC8CD019B44CB20EEF7A17AEC2B59'
+2023-06-04 00:54:03,415 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffplay.html'
+  with checksum '5DC7BCB04ED7DF8D9E4AED7B73007D32'
+2023-06-04 00:54:03,419 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffprobe-all.html'
+  with checksum 'B2ACCD09786BCFAB3BA80524FA7DF5E2'
+2023-06-04 00:54:03,420 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffprobe.html'
+  with checksum 'D8BF62B27E678D5F6CE846AB31E09C8D'
+2023-06-04 00:54:03,421 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\general.html'
+  with checksum '17448F72825FF9C32CA1B175E33338AF'
+2023-06-04 00:54:03,421 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\git-howto.html'
+  with checksum '056CEEA5DBCB9BDB1A87C4FACC6B8BC6'
+2023-06-04 00:54:03,422 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavcodec.html'
+  with checksum 'BBF8C903B675E21E6FC49604DCC5F6DA'
+2023-06-04 00:54:03,422 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavdevice.html'
+  with checksum '401E44F36CFDBC2E2F3188AF268E0C5E'
+2023-06-04 00:54:03,423 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavfilter.html'
+  with checksum '232B9EB71F463BF45474C92799EC90F1'
+2023-06-04 00:54:03,424 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavformat.html'
+  with checksum '7E65FEA44A99FD73833A46ABBEF3A211'
+2023-06-04 00:54:03,424 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavutil.html'
+  with checksum '4E863CECAC1EBB03A0B27110595EB62C'
+2023-06-04 00:54:03,425 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libswresample.html'
+  with checksum 'C9267E6795CE0F54F3C569D24A297CFD'
+2023-06-04 00:54:03,426 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libswscale.html'
+  with checksum 'C991A6B87BAC1C56F98D064DE07BAD68'
+2023-06-04 00:54:03,426 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\mailing-list-faq.html'
+  with checksum '579E43459725F2FD73A099785EDCE02E'
+2023-06-04 00:54:03,427 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\nut.html'
+  with checksum 'A508B48972CAF32B0140EE5CABC13E15'
+2023-06-04 00:54:03,427 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\platform.html'
+  with checksum '689809865533D694A95BA17420CC07E3'
+2023-06-04 00:54:03,428 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\style.min.css'
+  with checksum 'B3A5E014B4BCFB53728FEE921C6C59BF'
+2023-06-04 00:54:03,428 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-1080p.ffpreset'
+  with checksum '0A39BE7F9B4AF4C9F71926A7DD978362'
+2023-06-04 00:54:03,429 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-1080p50_60.ffpreset'
+  with checksum '40901C966F81CEEBA77952CBED76D94C'
+2023-06-04 00:54:03,430 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-360p.ffpreset'
+  with checksum 'E54A9CB37D75E2EC8A9A94131EE9A3E1'
+2023-06-04 00:54:03,430 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-720p.ffpreset'
+  with checksum '36A99B51F99AF0D02D863895D73CA8D5'
+2023-06-04 00:54:03,431 29948 [DEBUG] -  Found 'C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-720p50_60.ffpreset'
+  with checksum 'E4670570B66B6F803D3E88FD7FF7436B'
+2023-06-04 00:54:03,438 29948 [DEBUG] - Calling command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe" --output="C:\ProgramData\chocolatey\bin\ffmpeg.exe"  --iconpath="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe"']
+2023-06-04 00:54:03,934 29948 [DEBUG] -  [ShimGen] [WARN ] Could not extract icon from associated program. Using default. Error:
+2023-06-04 00:54:03,935 29948 [DEBUG] -  [ShimGen]   Selected Icon is invalid
+2023-06-04 00:54:04,037 29948 [DEBUG] -  [ShimGen] Microsoft (R) Visual C# Compiler version 4.8.9032.0
+2023-06-04 00:54:04,038 29948 [DEBUG] -  [ShimGen] for C# 5
+2023-06-04 00:54:04,039 29948 [DEBUG] -  [ShimGen] Copyright (C) Microsoft Corporation. All rights reserved.
+2023-06-04 00:54:04,039 29948 [DEBUG] -  [ShimGen] This compiler is provided as part of the Microsoft (R) .NET Framework, but only supports language versions up to C# 5, which is no longer the latest version. For compilers that support newer versions of the C# programming language, see http://go.microsoft.com/fwlink/?LinkID=533240
+2023-06-04 00:54:04,040 29948 [DEBUG] -  [ShimGen] ShimGen has successfully created 'C:\ProgramData\chocolatey\bin\ffmpeg.exe'
+2023-06-04 00:54:04,062 29948 [DEBUG] - Command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe" --output="C:\ProgramData\chocolatey\bin\ffmpeg.exe"  --iconpath="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe"'] exited with '0'
+2023-06-04 00:54:04,063 29948 [INFO ] -  ShimGen has successfully created a shim for ffmpeg.exe
+2023-06-04 00:54:04,066 29948 [DEBUG] -   Created: C:\ProgramData\chocolatey\bin\ffmpeg.exe
+  Targeting: C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe
+  IsGui:False
+
+2023-06-04 00:54:04,068 29948 [DEBUG] - Calling command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\ffmpeg\tools\ffmpeg\bin\ffplay.exe" --output="C:\ProgramData\chocolatey\bin\ffplay.exe"  --iconpath="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffplay.exe"']
+2023-06-04 00:54:04,378 29948 [DEBUG] -  [ShimGen] [WARN ] Could not extract icon from associated program. Using default. Error:
+2023-06-04 00:54:04,379 29948 [DEBUG] -  [ShimGen]   Selected Icon is invalid
+2023-06-04 00:54:04,455 29948 [DEBUG] -  [ShimGen] Microsoft (R) Visual C# Compiler version 4.8.9032.0
+2023-06-04 00:54:04,456 29948 [DEBUG] -  [ShimGen] for C# 5
+2023-06-04 00:54:04,456 29948 [DEBUG] -  [ShimGen] Copyright (C) Microsoft Corporation. All rights reserved.
+2023-06-04 00:54:04,458 29948 [DEBUG] -  [ShimGen] This compiler is provided as part of the Microsoft (R) .NET Framework, but only supports language versions up to C# 5, which is no longer the latest version. For compilers that support newer versions of the C# programming language, see http://go.microsoft.com/fwlink/?LinkID=533240
+2023-06-04 00:54:04,458 29948 [DEBUG] -  [ShimGen] ShimGen has successfully created 'C:\ProgramData\chocolatey\bin\ffplay.exe'
+2023-06-04 00:54:04,479 29948 [DEBUG] - Command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\ffmpeg\tools\ffmpeg\bin\ffplay.exe" --output="C:\ProgramData\chocolatey\bin\ffplay.exe"  --iconpath="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffplay.exe"'] exited with '0'
+2023-06-04 00:54:04,480 29948 [INFO ] -  ShimGen has successfully created a shim for ffplay.exe
+2023-06-04 00:54:04,482 29948 [DEBUG] -   Created: C:\ProgramData\chocolatey\bin\ffplay.exe
+  Targeting: C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffplay.exe
+  IsGui:False
+
+2023-06-04 00:54:04,482 29948 [DEBUG] - Calling command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe" --output="C:\ProgramData\chocolatey\bin\ffprobe.exe"  --iconpath="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe"']
+2023-06-04 00:54:04,764 29948 [DEBUG] -  [ShimGen] [WARN ] Could not extract icon from associated program. Using default. Error:
+2023-06-04 00:54:04,765 29948 [DEBUG] -  [ShimGen]   Selected Icon is invalid
+2023-06-04 00:54:04,840 29948 [DEBUG] -  [ShimGen] Microsoft (R) Visual C# Compiler version 4.8.9032.0
+2023-06-04 00:54:04,841 29948 [DEBUG] -  [ShimGen] for C# 5
+2023-06-04 00:54:04,842 29948 [DEBUG] -  [ShimGen] Copyright (C) Microsoft Corporation. All rights reserved.
+2023-06-04 00:54:04,842 29948 [DEBUG] -  [ShimGen] This compiler is provided as part of the Microsoft (R) .NET Framework, but only supports language versions up to C# 5, which is no longer the latest version. For compilers that support newer versions of the C# programming language, see http://go.microsoft.com/fwlink/?LinkID=533240
+2023-06-04 00:54:04,843 29948 [DEBUG] -  [ShimGen] ShimGen has successfully created 'C:\ProgramData\chocolatey\bin\ffprobe.exe'
+2023-06-04 00:54:04,863 29948 [DEBUG] - Command ['"C:\ProgramData\chocolatey\tools\shimgen.exe" --path="..\\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe" --output="C:\ProgramData\chocolatey\bin\ffprobe.exe"  --iconpath="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe"'] exited with '0'
+2023-06-04 00:54:04,864 29948 [INFO ] -  ShimGen has successfully created a shim for ffprobe.exe
+2023-06-04 00:54:04,866 29948 [DEBUG] -   Created: C:\ProgramData\chocolatey\bin\ffprobe.exe
+  Targeting: C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe
+  IsGui:False
+
+2023-06-04 00:54:04,882 29948 [DEBUG] - Attempting to create directory "C:\ProgramData\chocolatey\.chocolatey".
+2023-06-04 00:54:04,887 29948 [DEBUG] - Adding 'Hidden' attribute(s) to 'C:\ProgramData\chocolatey\.chocolatey'.
+2023-06-04 00:54:04,895 29948 [DEBUG] - Attempting to create directory "C:\ProgramData\chocolatey\.chocolatey\ffmpeg.6.0.0".
+2023-06-04 00:54:04,904 29948 [DEBUG] - There was no original file at 'C:\ProgramData\chocolatey\.chocolatey\ffmpeg.6.0.0\.files'
+2023-06-04 00:54:04,907 29948 [DEBUG] - Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\ffmpeg.6.0.0\.extra".
+2023-06-04 00:54:04,907 29948 [DEBUG] - Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\ffmpeg.6.0.0\.version".
+2023-06-04 00:54:04,908 29948 [DEBUG] - Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\ffmpeg.6.0.0\.sxs".
+2023-06-04 00:54:04,908 29948 [DEBUG] - Attempting to delete file "C:\ProgramData\chocolatey\.chocolatey\ffmpeg.6.0.0\.pin".
+2023-06-04 00:54:04,910 29948 [DEBUG] - Sending message 'HandlePackageResultCompletedMessage' out if there are subscribers...
+2023-06-04 00:54:04,911 29948 [DEBUG] - Attempting to delete file "C:\ProgramData\chocolatey\lib\ffmpeg\.chocolateyPending".
+2023-06-04 00:54:04,913 29948 [INFO ] -  The install of ffmpeg was successful.
+2023-06-04 00:54:04,915 29948 [INFO ] -   Software installed to 'C:\ProgramData\chocolatey\lib\ffmpeg\tools'
+2023-06-04 00:54:04,927 29948 [WARN ] - 
+Chocolatey installed 1/1 packages. 
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+2023-06-04 00:54:04,930 29948 [DEBUG] - Sending message 'PostRunMessage' out if there are subscribers...
+2023-06-04 00:54:04,931 29948 [DEBUG] - Exiting with 0

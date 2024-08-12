@@ -1,7 +1,6 @@
 import sys
 import importlib
 importlib.reload(sys)
-from faster_whisper import WhisperModel
 import datetime
 import gradio as gr
 import os
@@ -19,10 +18,8 @@ import ffmpeg
 import uuid
 import numpy as np
 from collections import defaultdict
-# from modelscope import Model, pipeline, read_config, snapshot_download
-# from modelscope.metainfo import Models
-# from modelscope.utils.config import ConfigDict
-# from modelscope.models.nlp import ChatGLM2Tokenizer
+from models.download_fasterwhisper import speech_to_text, whisper_model
+from models.use_zhipu import get_qa
 
 SENTENCE_SIZE = 512
 SAMPLE_RATE = 16000
@@ -30,33 +27,6 @@ os.makedirs("output", exist_ok=True)
 # 设置环境变量
 NLTK_DATA_PATH = os.path.join(os.path.dirname(__file__), "nltk_data")
 nltk.data.path = [NLTK_DATA_PATH] + nltk.data.path
-os.environ["PATH"] = os.environ["PATH"]+':'+os.path.join(os.path.dirname(__file__), "ffmpeg_release")
-
-
-for i in range(10):
-    try:
-        model = WhisperModel("medium", device="cuda" if torch.cuda.is_available() else "cpu", compute_type="int8_float16", local_files_only=True)
-        print("medium FasterWhisper模型加载完毕")
-        break
-    except Exception as e:
-        print(f"重新加载medium FasterWhisper模型【网络问题】，次数：{i}")
-
-
-model_dir = 'ZhipuAI/chatglm2-6b'
-model_dir = snapshot_download(model_dir, revision='v1.0.6')
-model_config = read_config(model_dir, revision='v1.0.6')
-model_config['model'] = ConfigDict({'type': Models.chatglm2_6b})
-tokenizer = ChatGLM2Tokenizer.from_pretrained(model_dir)
-chatmodel = Model.from_pretrained(model_dir, cfg_dict=model_config)
-chatmodel = chatmodel.bfloat16()
-pipe = pipeline('chat', chatmodel, pipeline_name='chatglm6b-text-generation')
-print("ZhipuAI/chatglm2-6b模型加载完毕")
-
-
-# 根据输入的问题，给出结果
-def get_qa(text):
-    torch_gc()
-    return chatmodel.chat(tokenizer=tokenizer, query=text, history= [], temperature=0.001)["response"]
 
 
 # 抽取摘要的提示
@@ -66,7 +36,8 @@ prompt_template = """为下面的内容生成一份精简的摘要:
 {text}
 
 
-返回中文摘要内容:"""
+返回中文摘要内容
+"""
 
 # 使用refine模式抽取摘要的提示
 refine_template = (
@@ -152,44 +123,10 @@ def extract_keyword(output_txt_path):
         return get_wordcloud_pic(words, color='white', top_k=51, bg_name='bg', font_type='wryh')
 
 
-# 生成关键词词云图
-def get_wordcloud_pic(words_freq, **kwargs):
-    bg_img = imageio.imread('./sources/{}.png'.format(kwargs['bg_name']))
-    font_path = './sources/{}.ttf'.format(kwargs['font_type'])
-    word_cloud = WordCloud(font_path=font_path, background_color=kwargs['color'], max_words=kwargs['top_k'], max_font_size=50, mask=bg_img)
-    word_cloud.generate_from_frequencies(words_freq)
-    word_cloud.to_file('./output/result.png')
-    return imageio.imread('./output/result.png')
-
-
-# 音频或者视频转写为文本
-def speech_to_text(video_file_path):
-    torch_gc()
-    print("开始转写音频或者视频")
-    # 避免用户上传wav文件后，使用ffmpeg转换重名失败
-    video_file_path = video_file_path.replace(".wav", ".mp4")
-    filename, file_ending = os.path.splitext(f'{video_file_path}')
-    new_video_file_path = filename + "_" + time.strftime("%Y%m%d%H%M%S", time.localtime()) + file_ending
-    os.rename(video_file_path, new_video_file_path)
-    audio_file = new_video_file_path.replace(file_ending, ".wav")
-    os.system(f'ffmpeg_release/ffmpeg -i "{new_video_file_path}" -ar 16000 -ac 1 -c:a pcm_s16le "{audio_file}"')
-
-    options = dict(language="zh", beam_size=5, best_of=5)
-    transcribe_options = dict(task="transcribe", **options)
-    segments_raw, info = model.transcribe(audio_file, **transcribe_options)
-
-    segments = []
-    for segment_chunk in segments_raw:
-        segments.append(segment_chunk.text)
-
-    # 返回文件的前缀和转写后的文本
-    return os.path.basename(new_video_file_path).split(".")[0], " ".join(segments)
-
-
 # 离线视频分析
 def offline_video_analyse(video_file_path):
     torch_gc()
-    print("开始分析离线视频")
+    print("开始分析离线视频:", video_file_path)
     # 视频转文本
     file_prefix, transcribe_text = speech_to_text(video_file_path)
 
@@ -341,7 +278,7 @@ def stream_video_translate(url, max_len=10, language=None, interval=5, history_b
 
             # Decode the audio
             clear_buffers = False
-            segments, info = model.transcribe(audio, language=language, **decode_options)
+            segments, info = whisper_model.transcribe(audio, language=language, **decode_options)
 
             decoded_language = "" if language else "(" + info.language + ")"
             decoded_text = ""
@@ -430,7 +367,7 @@ def microphone_translate(audio, key, language=None, interval_sec=5, **decode_opt
     sample_rate, audio_stream = reformat_freq(*audio)
     # 数据转换，模型只支持16000采样率
     audio_stream = audio_stream.flatten().astype(np.float32) / 32768.0
-    segments, info = model.transcribe(audio_stream, language=language, **decode_options)
+    segments, info = whisper_model.transcribe(audio_stream, language=language, **decode_options)
     # 本次处理的转录文字
     decoded_text = ""
     previous_segment = ""
@@ -521,7 +458,7 @@ with gr.Blocks() as demo:
 # 可能有遗留gr进程，关闭所有gr进程
 gr.close_all()
 time.sleep(3)
-demo.queue().launch(server_name='0.0.0.0', share=False, inbrowser=False)
+demo.queue().launch(server_name='0.0.0.0', server_port=7860, share=False, inbrowser=False)
 
 
 

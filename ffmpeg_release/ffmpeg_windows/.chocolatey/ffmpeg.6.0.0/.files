@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fileSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <files>
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\ffmpeg-release-essentials.7z.txt" checksum="16CCABA9BCD49D2EA899C2E27FD60F2C" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\ffmpeg.nupkg" checksum="9E96644B78795A1A77E5E54513866971" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\ffmpeg.nuspec" checksum="100DDD930F1B2209907EF1EB2A399603" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\legal\LICENSE.txt" checksum="3C34AFDC3ADF82D2448F12715A255122" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\legal\VERIFICATION.txt" checksum="49161042F535A22B778A209089125C62" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\chocolateyInstall.ps1" checksum="CE5F9CD4A82F9DAA1BDB566F2774101D" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\LICENSE" checksum="D32239BCB673463AB874E80D47FAE504" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\README.txt" checksum="1CB1E6743F198B098D6E839566A76D10" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe" checksum="23FC9CCA41FBE39FE090A5E097839536" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffplay.exe" checksum="94AA7AD97AE187EA90A155C9641EC3D7" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe" checksum="F1F3E856D52A5461AC091380D48265AD" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\bootstrap.min.css" checksum="99D2B8992E26F67BC9E5DCA610635A60" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\default.css" checksum="63D1BA9723F4C05412FE3B3DDF302847" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\developer.html" checksum="BA3BD9EDB402CFCC1CC52F4E4DE7F05B" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\faq.html" checksum="22817B9F508500FE702C32CAB70495F0" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\fate.html" checksum="0AB32C0B201E8DEF9CC6E8BEC1D5AE7E" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-all.html" checksum="D9181A6F76E53AF5460E19A09E2CD373" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-bitstream-filters.html" checksum="1D37259B02C67F1586DC79A1A3305255" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-codecs.html" checksum="1E522F92316A95DF9235AF4AAC820FA7" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-devices.html" checksum="B4242937EDA788719540C7F6F176C2D3" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-filters.html" checksum="65AC9C6E13C009FAE4C7F6E56875C515" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-formats.html" checksum="E209B4A69DD99D37B86F82991F1C42F0" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-protocols.html" checksum="354C997C4009C0ED231345C735F70DAC" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-resampler.html" checksum="F848FF36CD2CE746DF8A745B2AE70662" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-scaler.html" checksum="E900792AEAB95DFDD0161EB376EF601F" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg-utils.html" checksum="356142A80B591A3D7BBAA5A5365B201C" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffmpeg.html" checksum="8A9887C01D58232C0B924C4F55D1CCA1" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffplay-all.html" checksum="44BFC8CD019B44CB20EEF7A17AEC2B59" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffplay.html" checksum="5DC7BCB04ED7DF8D9E4AED7B73007D32" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffprobe-all.html" checksum="B2ACCD09786BCFAB3BA80524FA7DF5E2" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\ffprobe.html" checksum="D8BF62B27E678D5F6CE846AB31E09C8D" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\general.html" checksum="17448F72825FF9C32CA1B175E33338AF" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\git-howto.html" checksum="056CEEA5DBCB9BDB1A87C4FACC6B8BC6" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavcodec.html" checksum="BBF8C903B675E21E6FC49604DCC5F6DA" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavdevice.html" checksum="401E44F36CFDBC2E2F3188AF268E0C5E" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavfilter.html" checksum="232B9EB71F463BF45474C92799EC90F1" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavformat.html" checksum="7E65FEA44A99FD73833A46ABBEF3A211" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libavutil.html" checksum="4E863CECAC1EBB03A0B27110595EB62C" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libswresample.html" checksum="C9267E6795CE0F54F3C569D24A297CFD" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\libswscale.html" checksum="C991A6B87BAC1C56F98D064DE07BAD68" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\mailing-list-faq.html" checksum="579E43459725F2FD73A099785EDCE02E" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\nut.html" checksum="A508B48972CAF32B0140EE5CABC13E15" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\platform.html" checksum="689809865533D694A95BA17420CC07E3" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\doc\style.min.css" checksum="B3A5E014B4BCFB53728FEE921C6C59BF" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-1080p.ffpreset" checksum="0A39BE7F9B4AF4C9F71926A7DD978362" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-1080p50_60.ffpreset" checksum="40901C966F81CEEBA77952CBED76D94C" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-360p.ffpreset" checksum="E54A9CB37D75E2EC8A9A94131EE9A3E1" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-720p.ffpreset" checksum="36A99B51F99AF0D02D863895D73CA8D5" />
+    <file path="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\presets\libvpx-720p50_60.ffpreset" checksum="E4670570B66B6F803D3E88FD7FF7436B" />
+  </files>
+</fileSnapshot>
