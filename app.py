@@ -19,10 +19,10 @@ import ffmpeg
 import uuid
 import numpy as np
 from collections import defaultdict
-from modelscope import Model, pipeline, read_config, snapshot_download
-from modelscope.metainfo import Models
-from modelscope.utils.config import ConfigDict
-from modelscope.models.nlp import ChatGLM2Tokenizer
+# from modelscope import Model, pipeline, read_config, snapshot_download
+# from modelscope.metainfo import Models
+# from modelscope.utils.config import ConfigDict
+# from modelscope.models.nlp import ChatGLM2Tokenizer
 
 SENTENCE_SIZE = 512
 SAMPLE_RATE = 16000
@@ -35,7 +35,7 @@ os.environ["PATH"] = os.environ["PATH"]+':'+os.path.join(os.path.dirname(__file_
 
 for i in range(10):
     try:
-        model = WhisperModel("medium", device="cuda" if torch.cuda.is_available() else "cpu", compute_type="int8_float16")
+        model = WhisperModel("medium", device="cuda" if torch.cuda.is_available() else "cpu", compute_type="int8_float16", local_files_only=True)
         print("medium FasterWhisper模型加载完毕")
         break
     except Exception as e:
